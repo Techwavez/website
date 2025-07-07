@@ -16,6 +16,7 @@ import {
   Phone
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import LanguageDebugger from '../components/LanguageDebugger';
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
@@ -350,6 +351,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Language Debug Panel (temporary for testing) */}
+      <LanguageDebugger />
     </div>
   );
 };
