@@ -1211,15 +1211,50 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
+// Function to detect browser language
+const detectBrowserLanguage = (): Language => {
+  // Check localStorage first for user preference
+  const savedLanguage = localStorage.getItem('preferred-language');
+  if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+    return savedLanguage as Language;
+  }
+
+  // Get browser language preferences
+  const browserLanguages = navigator.languages || [navigator.language];
+  
+  // Check each browser language preference
+  for (const lang of browserLanguages) {
+    const languageCode = lang.split('-')[0].toLowerCase();
+    
+    // Return French if browser prefers French
+    if (languageCode === 'fr') {
+      return 'fr';
+    }
+    // Return English if browser prefers English
+    if (languageCode === 'en') {
+      return 'en';
+    }
+  }
+  
+  // Default fallback to English
+  return 'en';
+};
+
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(() => detectBrowserLanguage());
+
+  // Enhanced setLanguage function that saves to localStorage
+  const updateLanguage = (newLang: Language) => {
+    setLanguage(newLang);
+    localStorage.setItem('preferred-language', newLang);
+  };
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['en']] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: updateLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );
