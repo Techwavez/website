@@ -1,0 +1,561 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { 
+  Brain, 
+  ArrowRight, 
+  CheckCircle, 
+  Zap, 
+  Shield, 
+  TrendingUp,
+  Cpu,
+  Database,
+  Network,
+  Target,
+  Users,
+  Clock,
+  MessageSquare,
+  Bot,
+  Layers,
+  GitBranch,
+  Lock,
+  Workflow
+} from 'lucide-react';
+
+const AIAdvisory: React.FC = () => {
+  const capabilities = [
+    {
+      icon: Layers,
+      title: 'Multi-Model Strategy',
+      description: 'Comprehensive AI strategy leveraging multiple models for optimal performance and cost efficiency.',
+    },
+    {
+      icon: MessageSquare,
+      title: 'Private Chatbots',
+      description: 'Secure, enterprise-grade chatbots with custom knowledge bases and privacy-first architecture.',
+    },
+    {
+      icon: Bot,
+      title: 'AI Agent Design',
+      description: 'Intelligent business agents that automate complex workflows and decision-making processes.',
+    },
+    {
+      icon: Shield,
+      title: 'AI Ethics & Governance',
+      description: 'Responsible AI frameworks ensuring ethical deployment and regulatory compliance.',
+    },
+    {
+      icon: Database,
+      title: 'Data Infrastructure',
+      description: 'Scalable data pipelines and architecture optimized for AI workloads.',
+    },
+    {
+      icon: Network,
+      title: 'AI Integration',
+      description: 'Seamless integration of AI capabilities into existing business processes.',
+    },
+  ];
+
+  const aiServices = [
+    {
+      icon: Layers,
+      title: 'Multi-Model AI Strategy',
+      features: [
+        'Model selection and optimization for specific use cases',
+        'Cost-effective model routing and load balancing',
+        'Performance benchmarking across different models',
+        'Hybrid cloud and on-premise model deployment',
+        'Model versioning and A/B testing frameworks'
+      ]
+    },
+    {
+      icon: Lock,
+      title: 'Private Chatbot Development',
+      features: [
+        'Secure, on-premise chatbot deployment',
+        'Custom knowledge base integration',
+        'Multi-language support and localization',
+        'Advanced conversation flow design',
+        'Enterprise SSO and access control integration'
+      ]
+    },
+    {
+      icon: Workflow,
+      title: 'AI Agent Design & Implementation',
+      features: [
+        'Autonomous business process agents',
+        'Decision-making workflow automation',
+        'Multi-agent system orchestration',
+        'Real-time monitoring and optimization',
+        'Custom agent training and fine-tuning'
+      ]
+    }
+  ];
+
+  const processSteps = [
+    {
+      number: '01',
+      title: 'AI Strategy Assessment',
+      description: 'Comprehensive evaluation of your AI readiness and multi-model strategy requirements.',
+      duration: '2-3 weeks',
+    },
+    {
+      number: '02',
+      title: 'Solution Architecture',
+      description: 'Design custom AI architecture including chatbots, agents, and model selection strategy.',
+      duration: '1-2 weeks',
+    },
+    {
+      number: '03',
+      title: 'Prototype Development',
+      description: 'Build and test AI prototypes including private chatbots and business agents.',
+      duration: '3-4 weeks',
+    },
+    {
+      number: '04',
+      title: 'Production Deployment',
+      description: 'Full-scale implementation with monitoring, optimization, and ongoing support.',
+      duration: '6-8 weeks',
+    },
+  ];
+
+  const aiSolutions = [
+    {
+      icon: MessageSquare,
+      title: 'Enterprise Chatbots',
+      description: 'Private, secure chatbots for customer service, internal support, and knowledge management',
+      useCases: ['Customer Support', 'HR Assistant', 'IT Helpdesk', 'Sales Qualification']
+    },
+    {
+      icon: Bot,
+      title: 'Business AI Agents',
+      description: 'Intelligent agents that automate complex business processes and decision workflows',
+      useCases: ['Document Processing', 'Approval Workflows', 'Data Analysis', 'Quality Control']
+    },
+    {
+      icon: Layers,
+      title: 'Multi-Model Systems',
+      description: 'Optimized AI systems using multiple models for different tasks and performance requirements',
+      useCases: ['Cost Optimization', 'Performance Tuning', 'Specialized Tasks', 'Fallback Systems']
+    },
+    {
+      icon: Network,
+      title: 'AI Integration Platform',
+      description: 'Unified platform connecting various AI models and agents across your organization',
+      useCases: ['API Management', 'Model Orchestration', 'Data Flow', 'Monitoring Dashboard']
+    },
+  ];
+
+  const industries = [
+    'Financial Services',
+    'Healthcare & Life Sciences',
+    'Manufacturing',
+    'Retail & E-commerce',
+    'Energy & Utilities',
+    'Transportation & Logistics',
+  ];
+
+  const metrics = [
+    { value: '60%', label: 'Cost Reduction', description: 'Average cost savings through multi-model optimization' },
+    { value: '85%', label: 'Automation Rate', description: 'Business processes automated with AI agents' },
+    { value: '24/7', label: 'Availability', description: 'Private chatbots providing round-the-clock support' },
+    { value: '99.9%', label: 'Data Security', description: 'Enterprise-grade security for private AI systems' },
+  ];
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-24 bg-gradient-to-br from-navy-900 via-navy-800 to-navy-900 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-neon-blue-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-lime-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-slide-in-left">
+              <div className="flex items-center space-x-3 mb-6">
+                <Brain className="w-8 h-8 text-neon-blue-500" />
+                <span className="text-neon-blue-400 font-inter font-medium">AI Advisory Services</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-space-grotesk font-bold text-white mb-6 leading-tight">
+                Multi-Model AI
+                <span className="block bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 bg-clip-text text-transparent">
+                  Strategy & Agents
+                </span>
+              </h1>
+              
+              <p className="text-xl text-gray-300 font-inter mb-8 leading-relaxed">
+                Transform your enterprise with strategic multi-model AI implementations, private chatbots, 
+                and intelligent business agents designed for maximum efficiency and security.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link
+                  to="/contact"
+                  className="group bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 text-navy-900 px-8 py-4 rounded-lg font-inter font-semibold hover:shadow-2xl hover:shadow-neon-blue-500/25 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <span>Start Your AI Journey</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+                <Link
+                  to="/about"
+                  className="border-2 border-neon-blue-500 text-neon-blue-500 px-8 py-4 rounded-lg font-inter font-semibold hover:bg-neon-blue-500/10 transition-all duration-300 text-center"
+                >
+                  View AI Demo
+                </Link>
+              </div>
+            </div>
+
+            <div className="animate-slide-in-right">
+              <div className="relative">
+                <div className="bg-navy-800/50 backdrop-blur-sm border border-navy-700 rounded-2xl p-8">
+                  <h3 className="text-2xl font-space-grotesk font-bold text-white mb-6">
+                    AI Implementation Stack
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between p-4 bg-navy-700/50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <Layers className="w-5 h-5 text-neon-blue-500" />
+                        <span className="text-white font-inter">Multi-Model Strategy</span>
+                      </div>
+                      <span className="text-neon-blue-400 font-inter text-sm">Optimized</span>
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-navy-700/50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <MessageSquare className="w-5 h-5 text-gradient-lime-500" />
+                        <span className="text-white font-inter">Private Chatbots</span>
+                      </div>
+                      <span className="text-gradient-lime-400 font-inter text-sm">Secure</span>
+                    </div>
+                    <div className="flex items-center justify-between p-4 bg-navy-700/50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <Bot className="w-5 h-5 text-neon-blue-500" />
+                        <span className="text-white font-inter">AI Agents</span>
+                      </div>
+                      <span className="text-neon-blue-400 font-inter text-sm">Intelligent</span>
+                    </div>
+                  </div>
+                  <div className="mt-6 p-4 bg-neon-blue-500/10 rounded-lg border border-neon-blue-500/20">
+                    <p className="text-neon-blue-400 font-inter text-sm">
+                      <strong>AI Readiness Score: 95%</strong> - Advanced multi-model AI implementation ready
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Capabilities Section */}
+      <section className="py-24 bg-navy-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-slide-in-up">
+            <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
+              Advanced AI Capabilities
+            </h2>
+            <p className="text-xl text-gray-300 font-inter max-w-3xl mx-auto leading-relaxed">
+              From multi-model strategies to intelligent agents, we provide comprehensive AI advisory 
+              services that leverage the latest advances in artificial intelligence.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {capabilities.map((capability, index) => (
+              <div
+                key={index}
+                className="group bg-navy-800/50 backdrop-blur-sm border border-navy-700 rounded-2xl p-8 hover:border-neon-blue-500/50 hover:bg-navy-800/70 transition-all duration-300 animate-slide-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="relative mb-6">
+                  <capability.icon className="w-12 h-12 text-neon-blue-500 group-hover:text-gradient-lime-500 transition-colors duration-300" />
+                  <div className="absolute inset-0 w-12 h-12 bg-neon-blue-500/20 rounded-full blur-md group-hover:bg-gradient-lime-500/20 transition-colors duration-300"></div>
+                </div>
+                
+                <h3 className="text-xl font-space-grotesk font-bold text-white mb-4 group-hover:text-neon-blue-400 transition-colors duration-300">
+                  {capability.title}
+                </h3>
+                
+                <p className="text-gray-300 font-inter leading-relaxed">
+                  {capability.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Services Detail Section */}
+      <section className="py-24 bg-gradient-to-br from-navy-800 to-navy-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-slide-in-up">
+            <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
+              Specialized AI Services
+            </h2>
+            <p className="text-xl text-gray-300 font-inter max-w-3xl mx-auto leading-relaxed">
+              Our expertise spans the full spectrum of enterprise AI implementation, from strategic 
+              planning to hands-on development of intelligent systems.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {aiServices.map((service, index) => (
+              <div
+                key={index}
+                className="bg-navy-800/50 backdrop-blur-sm border border-navy-700 rounded-2xl p-8 hover:border-neon-blue-500/50 transition-all duration-300 animate-slide-in-up"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="grid lg:grid-cols-3 gap-8 items-start">
+                  <div>
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="relative">
+                        <service.icon className="w-10 h-10 text-neon-blue-500" />
+                        <div className="absolute inset-0 w-10 h-10 bg-neon-blue-500/20 rounded-full blur-md"></div>
+                      </div>
+                      <h3 className="text-xl font-space-grotesk font-bold text-white">
+                        {service.title}
+                      </h3>
+                    </div>
+                  </div>
+                  
+                  <div className="lg:col-span-2">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {service.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center space-x-3">
+                          <CheckCircle className="w-4 h-4 text-gradient-lime-500 flex-shrink-0" />
+                          <span className="text-gray-300 font-inter text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI Solutions Section */}
+      <section className="py-24 bg-navy-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-slide-in-up">
+            <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
+              AI Solutions by Use Case
+            </h2>
+            <p className="text-xl text-gray-300 font-inter max-w-3xl mx-auto leading-relaxed">
+              Tailored AI implementations designed for specific business functions and 
+              strategic objectives across your organization.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {aiSolutions.map((solution, index) => (
+              <div
+                key={index}
+                className="bg-navy-800/50 backdrop-blur-sm border border-navy-700 rounded-2xl p-8 hover:border-gradient-lime-500/50 transition-all duration-300 animate-slide-in-up"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="flex items-start space-x-4 mb-6">
+                  <div className="relative">
+                    <solution.icon className="w-10 h-10 text-gradient-lime-500" />
+                    <div className="absolute inset-0 w-10 h-10 bg-gradient-lime-500/20 rounded-full blur-md"></div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-space-grotesk font-bold text-white mb-2">
+                      {solution.title}
+                    </h3>
+                    <p className="text-gray-300 font-inter leading-relaxed">
+                      {solution.description}
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="text-sm font-space-grotesk font-semibold text-neon-blue-400 mb-3">
+                    Key Use Cases:
+                  </h4>
+                  {solution.useCases.map((useCase, useCaseIndex) => (
+                    <div key={useCaseIndex} className="flex items-center space-x-3">
+                      <CheckCircle className="w-4 h-4 text-gradient-lime-500 flex-shrink-0" />
+                      <span className="text-gray-300 font-inter text-sm">{useCase}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Metrics Section */}
+      <section className="py-24 bg-gradient-to-br from-navy-800 to-navy-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-slide-in-up">
+            <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
+              Proven AI Results
+            </h2>
+            <p className="text-xl text-gray-300 font-inter max-w-3xl mx-auto leading-relaxed">
+              Our AI implementations deliver measurable business impact through intelligent 
+              automation and strategic optimization.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {metrics.map((metric, index) => (
+              <div
+                key={index}
+                className="text-center bg-navy-800/30 backdrop-blur-sm border border-navy-700 rounded-2xl p-8 animate-slide-in-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="text-4xl md:text-5xl font-space-grotesk font-bold text-neon-blue-500 mb-2">
+                  {metric.value}
+                </div>
+                <h3 className="text-xl font-space-grotesk font-semibold text-white mb-2">
+                  {metric.label}
+                </h3>
+                <p className="text-gray-300 font-inter text-sm leading-relaxed">
+                  {metric.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-24 bg-navy-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 animate-slide-in-up">
+            <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
+              Our AI Implementation Process
+            </h2>
+            <p className="text-xl text-gray-300 font-inter max-w-3xl mx-auto leading-relaxed">
+              A structured, iterative approach that ensures successful AI adoption while minimizing risk 
+              and maximizing value creation throughout your transformation journey.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {processSteps.map((step, index) => (
+              <div
+                key={index}
+                className="relative animate-slide-in-up"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="bg-navy-800/50 backdrop-blur-sm border border-navy-700 rounded-2xl p-8 h-full hover:border-neon-blue-500/50 transition-all duration-300">
+                  <div className="text-6xl font-space-grotesk font-bold text-neon-blue-500/30 mb-4">
+                    {step.number}
+                  </div>
+                  
+                  <h3 className="text-xl font-space-grotesk font-bold text-white mb-4">
+                    {step.title}
+                  </h3>
+                  
+                  <p className="text-gray-300 font-inter leading-relaxed mb-4">
+                    {step.description}
+                  </p>
+
+                  <div className="flex items-center space-x-2 text-neon-blue-400">
+                    <Clock className="w-4 h-4" />
+                    <span className="font-inter text-sm">{step.duration}</span>
+                  </div>
+                </div>
+
+                {index < processSteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
+                    <ArrowRight className="w-8 h-8 text-neon-blue-500/50" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries Section */}
+      <section className="py-24 bg-gradient-to-br from-navy-800 to-navy-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="animate-slide-in-left">
+              <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
+                Industry-Specific
+                <span className="block text-neon-blue-500">AI Solutions</span>
+              </h2>
+              <p className="text-xl text-gray-300 font-inter leading-relaxed mb-8">
+                Our deep domain expertise across multiple industries enables us to deliver 
+                AI solutions that address sector-specific challenges and regulatory requirements.
+              </p>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-gradient-lime-500" />
+                  <span className="text-gray-300 font-inter">Industry-specific AI models and agents</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-gradient-lime-500" />
+                  <span className="text-gray-300 font-inter">Regulatory compliance frameworks</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <CheckCircle className="w-5 h-5 text-gradient-lime-500" />
+                  <span className="text-gray-300 font-inter">Private deployment options</span>
+                </div>
+              </div>
+
+              <Link
+                to="/contact"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 text-navy-900 px-6 py-3 rounded-lg font-inter font-semibold hover:shadow-lg hover:shadow-neon-blue-500/25 transition-all duration-300"
+              >
+                <span>Discuss Your Industry</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            <div className="animate-slide-in-right">
+              <div className="grid grid-cols-2 gap-4">
+                {industries.map((industry, index) => (
+                  <div
+                    key={index}
+                    className="bg-navy-800/50 backdrop-blur-sm border border-navy-700 rounded-xl p-6 hover:border-neon-blue-500/50 transition-all duration-300 text-center"
+                  >
+                    <Target className="w-8 h-8 text-neon-blue-500 mx-auto mb-3" />
+                    <h3 className="font-space-grotesk font-semibold text-white text-sm">
+                      {industry}
+                    </h3>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-neon-blue-500/10 to-gradient-lime-500/10">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <div className="animate-slide-in-up">
+            <Brain className="w-16 h-16 text-neon-blue-500 mx-auto mb-6" />
+            <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
+              Ready to Implement Advanced AI?
+            </h2>
+            <p className="text-xl text-gray-300 font-inter mb-8 leading-relaxed">
+              Transform your business with multi-model AI strategies, private chatbots, and intelligent 
+              agents designed for your specific needs and security requirements.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/contact"
+                className="bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 text-navy-900 px-8 py-4 rounded-lg font-inter font-semibold text-lg hover:shadow-2xl hover:shadow-neon-blue-500/25 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <Bot className="w-5 h-5" />
+                <span>Start AI Implementation</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default AIAdvisory;

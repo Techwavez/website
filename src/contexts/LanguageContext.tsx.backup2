@@ -1,0 +1,736 @@
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+export type Language = 'en' | 'fr';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+const translations = {
+  en: {
+    // Navigation
+    'nav.home': 'Home',
+    'nav.services': 'Services',
+    'nav.about': 'About',
+    'nav.contact': 'Contact',
+    'nav.getStarted': 'Get Started',
+    
+    // Services
+    'services.aiAdvisory': 'AI Advisory',
+    'services.erpImplementation': 'ERP Implementation',
+    'services.businessAutomation': 'Business Automation',
+    
+    // Hero Section
+    'hero.title': 'Future-Forward',
+    'hero.titleHighlight': 'Tech Solutions',
+    'hero.subtitle': 'Pioneering AI advisory, ERP implementation, and business automation solutions that propel enterprises into the digital future.',
+    'hero.startTransformation': 'Start Your Transformation',
+    'hero.learnMore': 'Learn More',
+    
+    // Services Section
+    'services.title': 'Enterprise-Grade Solutions',
+    'services.subtitle': 'Comprehensive technology services designed to accelerate innovation and drive measurable business outcomes across your organization.',
+    
+    // AI Advisory Service
+    'ai.title': 'AI Advisory',
+    'ai.description': 'Strategic multi-model AI implementations, private chatbots, and intelligent business agents designed for maximum efficiency.',
+    'ai.feature1': 'Multi-Model Strategy',
+    'ai.feature2': 'Private Chatbots',
+    'ai.feature3': 'AI Agent Design',
+    
+    // ERP Service
+    'erp.title': 'ERP Implementation',
+    'erp.description': 'Complete Odoo hosting solutions with multi-environment setup and custom development services tailored to your needs.',
+    'erp.feature1': 'Odoo Cloud Hosting',
+    'erp.feature2': 'Multi-Environment',
+    'erp.feature3': 'Custom Development',
+    
+    // Business Automation Service
+    'automation.title': 'Business Automation',
+    'automation.description': 'Intelligent automation solutions including process automation, marketing automation, and AI vocal agents for enhanced efficiency.',
+    'automation.feature1': 'Process Automation',
+    'automation.feature2': 'Marketing Automation',
+    'automation.feature3': 'AI Vocal Agents',
+    
+    // Stats
+    'stats.projectsDelivered': 'Projects Delivered',
+    'stats.clientSatisfaction': 'Client Satisfaction',
+    'stats.enterpriseClients': 'Enterprise Clients',
+    'stats.supportAvailable': 'Support Available',
+    
+    // Why Choose Us
+    'whyChoose.title': 'Why Industry Leaders',
+    'whyChoose.titleHighlight': 'Choose TechWave',
+    'whyChoose.subtitle': 'We combine deep technical expertise with strategic business acumen to deliver solutions that not only meet today\'s challenges but anticipate tomorrow\'s opportunities.',
+    'whyChoose.security.title': 'Enterprise Security',
+    'whyChoose.security.description': 'Bank-grade security protocols and compliance frameworks ensure your data remains protected.',
+    'whyChoose.team.title': 'Expert Team',
+    'whyChoose.team.description': 'Certified professionals with deep domain expertise and proven track records.',
+    'whyChoose.deployment.title': 'Rapid Deployment',
+    'whyChoose.deployment.description': 'Agile methodologies and proven frameworks ensure faster time-to-value.',
+    'whyChoose.cta.description': 'Join industry leaders who trust TechWave Office to drive their digital transformation initiatives.',
+    
+    // Testimonials
+    'testimonials.title': 'Trusted by Industry Leaders',
+    'testimonials.subtitle': 'Don\'t just take our word for it. See what our clients have to say about their transformation journey with TechWave Office.',
+    'testimonials.quote1': 'TechWave Office transformed our data infrastructure completely. Their AI advisory helped us achieve 40% operational efficiency gains.',
+    'testimonials.quote2': 'The ERP implementation was seamless. They delivered on time and their ongoing support has been exceptional.',
+    'testimonials.quote3': 'Their business automation solutions gave us insights we never thought possible. ROI was evident within the first quarter.',
+    
+    // CTA Section
+    'cta.title': 'Ready to Lead the Future?',
+    'cta.subtitle': 'Transform your business with cutting-edge technology solutions designed for tomorrow\'s challenges.',
+    
+    // Common
+    'common.learnMore': 'Learn More',
+    'common.readyToTransform': 'Ready to Transform Your Business?',
+    'common.scheduleConsultation': 'Schedule a Consultation',
+    'common.getStartedToday': 'Get Started Today',
+    'common.exploreServices': 'Explore Services',
+    
+    // Footer
+    'footer.description': 'Forward-thinking tech consultancy delivering enterprise-grade AI advisory, ERP implementation, and business intelligence solutions.',
+    'footer.services': 'Services',
+    'footer.company': 'Company',
+    'footer.contact': 'Contact',
+    'footer.aboutUs': 'About Us',
+    'footer.privacyPolicy': 'Privacy Policy',
+    'footer.termsOfService': 'Terms of Service',
+    'footer.allRightsReserved': 'All rights reserved.',
+
+    // About Page
+    'about.hero.title': 'Pioneering the Future of',
+    'about.hero.titleHighlight': 'Enterprise Technology',
+    'about.hero.subtitle': 'TechWave Office is a forward-thinking technology consultancy dedicated to transforming businesses through innovative AI, ERP, and business intelligence solutions.',
+    
+    'about.mission.title': 'Our Mission',
+    'about.mission.description': 'We empower organizations to harness the transformative power of technology, delivering solutions that drive innovation, efficiency, and sustainable growth in an increasingly digital world.',
+    'about.mission.point1': 'Enable digital transformation at scale',
+    'about.mission.point2': 'Deliver measurable business outcomes',
+    'about.mission.point3': 'Foster long-term strategic partnerships',
+    
+    'about.vision.title': 'Our Vision',
+    'about.vision.description': 'To be the global leader in enterprise technology consulting, recognized for our innovative solutions, exceptional client outcomes, and commitment to shaping the future of business through technology.',
+    'about.vision.futureReady': 'Future-Ready Solutions',
+    'about.vision.futureDescription': 'We don\'t just solve today\'s challenges – we prepare your organization for tomorrow\'s opportunities.',
+    
+    'about.values.title': 'Our Core Values',
+    'about.values.subtitle': 'The principles that guide our decisions, shape our culture, and drive our commitment to delivering exceptional value for our clients.',
+    'about.values.innovation.title': 'Innovation First',
+    'about.values.innovation.description': 'We stay ahead of technological trends to deliver cutting-edge solutions that drive real business value.',
+    'about.values.integrity.title': 'Integrity & Trust',
+    'about.values.integrity.description': 'We build lasting partnerships through transparent communication and unwavering commitment to our clients.',
+    'about.values.clientSuccess.title': 'Client Success',
+    'about.values.clientSuccess.description': 'Your success is our success. We measure our impact by the tangible results we deliver for your organization.',
+    'about.values.growth.title': 'Continuous Growth',
+    'about.values.growth.description': 'We foster a culture of learning and improvement, constantly evolving our expertise and methodologies.',
+    
+    'about.team.title': 'Leadership Team',
+    'about.team.subtitle': 'Meet the experienced professionals who lead our mission to transform businesses through innovative technology solutions.',
+    'about.team.ceo.role': 'CEO & AI Strategy Lead',
+    'about.team.ceo.expertise': 'AI Strategy, Machine Learning',
+    'about.team.ceo.description': 'Former AI Director at Fortune 500 companies, specializing in enterprise AI transformation.',
+    'about.team.cto.role': 'CTO & Solutions Architect',
+    'about.team.cto.expertise': 'ERP Systems, Cloud Architecture',
+    'about.team.cto.description': 'Expert in large-scale ERP implementations and cloud infrastructure optimization.',
+    'about.team.head.role': 'Head of Business Intelligence',
+    'about.team.head.expertise': 'Data Analytics, Visualization',
+    'about.team.head.description': 'Data science leader with expertise in advanced analytics and business intelligence platforms.',
+    'about.team.principal.role': 'Principal Consultant',
+    'about.team.principal.expertise': 'Change Management, Training',
+    'about.team.principal.description': 'Organizational transformation specialist focused on user adoption and change management.',
+    
+    'about.achievements.title': 'Our Achievements',
+    'about.achievements.subtitle': 'Recognition and milestones that reflect our commitment to excellence and our impact on the technology consulting industry.',
+    'about.achievements.recognition.title': 'Industry Recognition',
+    'about.achievements.recognition.item1': 'Top AI Consulting Firm 2024',
+    'about.achievements.recognition.item2': 'Microsoft Gold Partner',
+    'about.achievements.recognition.item3': 'Tableau Premier Partner',
+    'about.achievements.recognition.item4': 'SAP Certified Implementation Partner',
+    'about.achievements.reach.title': 'Global Reach',
+    'about.achievements.reach.item1': '50+ Enterprise Clients',
+    'about.achievements.reach.item2': '15 Countries Served',
+    'about.achievements.reach.item3': '150+ Projects Delivered',
+    'about.achievements.reach.item4': '98% Client Satisfaction',
+    'about.achievements.team.title': 'Expert Team',
+    'about.achievements.team.item1': '25+ Certified Consultants',
+    'about.achievements.team.item2': '200+ Years Combined Experience',
+    'about.achievements.team.item3': 'PhD-level Data Scientists',
+    'about.achievements.team.item4': 'Enterprise Architects',
+    
+    'about.services.title': 'What We Do',
+    'about.services.subtitle': 'Our comprehensive suite of services designed to accelerate your digital transformation and drive sustainable business growth.',
+    'about.services.ai.description': 'Strategic AI planning and implementation guidance',
+    'about.services.erp.description': 'Comprehensive enterprise resource planning solutions',
+    'about.services.automation.description': 'Advanced analytics and data visualization platforms',
+    'about.services.exploreServices': 'Explore Our Services',
+    
+    'about.cta.title': 'Ready to Partner with Us?',
+    'about.cta.subtitle': 'Let\'s discuss how TechWave Office can help transform your business through innovative technology solutions tailored to your unique needs.',
+    'about.cta.startConversation': 'Start the Conversation',
+
+    // Contact Page
+    'contact.hero.title': 'Let\'s Start Your',
+    'contact.hero.titleHighlight': 'Digital Transformation',
+    'contact.hero.subtitle': 'Ready to transform your business with cutting-edge technology? We\'re here to help you navigate your digital journey and achieve extraordinary results.',
+    
+    'contact.info.email.title': 'Email Us',
+    'contact.info.email.description': 'Send us an email and we\'ll respond within 24 hours',
+    'contact.info.phone.title': 'Call Us',
+    'contact.info.phone.description': 'Speak directly with our experts during business hours',
+    'contact.info.visit.title': 'Visit Us',
+    'contact.info.visit.description': 'Schedule an in-person consultation at our headquarters',
+    'contact.info.getInTouch': 'Get in Touch',
+    
+    'contact.form.title': 'Send Us a Message',
+    'contact.form.subtitle': 'Tell us about your project and we\'ll get back to you with a personalized proposal and consultation timeline.',
+    'contact.form.fullName': 'Full Name',
+    'contact.form.fullNamePlaceholder': 'Your full name',
+    'contact.form.emailAddress': 'Email Address',
+    'contact.form.emailPlaceholder': 'your.email@company.com',
+    'contact.form.companyName': 'Company Name',
+    'contact.form.companyPlaceholder': 'Your company name',
+    'contact.form.phoneNumber': 'Phone Number',
+    'contact.form.serviceOfInterest': 'Service of Interest',
+    'contact.form.selectService': 'Select a service',
+    'contact.form.generalConsultation': 'General Consultation',
+    'contact.form.other': 'Other',
+    'contact.form.projectDetails': 'Project Details',
+    'contact.form.projectPlaceholder': 'Tell us about your project, challenges, and goals. The more details you provide, the better we can help you.',
+    'contact.form.sendMessage': 'Send Message',
+    'contact.form.sending': 'Sending...',
+    'contact.form.privacyNote': 'By submitting this form, you agree to our privacy policy and terms of service.',
+    
+    'contact.success.title': 'Thank You!',
+    'contact.success.message': 'We\'ve received your message and will get back to you within 24 hours. Our team is excited to discuss how we can help transform your business.',
+    'contact.success.whatsNext': 'What\'s Next?',
+    'contact.success.step1': 'Our team will review your inquiry within 2 hours',
+    'contact.success.step2': 'You\'ll receive a personalized response within 24 hours',
+    'contact.success.step3': 'We\'ll schedule a consultation call at your convenience',
+    'contact.success.sendAnother': 'Send Another Message',
+    'contact.success.emailDirect': 'Email Us Directly',
+
+    // ERP Implementation Page
+    'erp.hero.title': 'Complete Odoo',
+    'erp.hero.titleHighlight': 'Hosting & Development',
+    'erp.hero.subtitle': 'Transform your business with comprehensive Odoo solutions including secure cloud hosting, multi-environment management, and custom development services tailored to your needs.',
+    'erp.hero.startJourney': 'Start Your Odoo Journey',
+    'erp.hero.viewDemo': 'View Odoo Demo',
+    'erp.hero.stackTitle': 'Odoo Implementation Stack',
+    'erp.hero.cloudHosting': 'Cloud Hosting',
+    'erp.hero.multiEnvironment': 'Multi-Environment',
+    'erp.hero.customDevelopment': 'Custom Development',
+    'erp.hero.active': 'Active',
+    'erp.hero.configured': 'Configured',
+    'erp.hero.ready': 'Ready',
+    'erp.hero.completeSolution': 'Complete Odoo Solution: From hosting to custom development',
+
+    'erp.services.title': 'Comprehensive Odoo Services',
+    'erp.services.subtitle': 'From secure cloud hosting to custom module development, we provide end-to-end Odoo solutions that transform your business operations and drive sustainable growth.',
+
+    'erp.expertise.title': 'Specialized Odoo Expertise',
+    'erp.expertise.subtitle': 'Our deep Odoo expertise covers every aspect of implementation, from infrastructure management to custom development and ongoing support.',
+
+    'erp.platforms.title': 'Odoo Platform Options',
+    'erp.platforms.subtitle': 'Choose the right Odoo solution for your business needs, from community edition to enterprise features with custom development capabilities.',
+
+    'erp.results.title': 'Proven Odoo Results',
+    'erp.results.subtitle': 'Our Odoo implementations deliver measurable results that drive operational excellence and sustainable competitive advantages across your organization.',
+    'erp.results.fasterDeployment': '50% Faster Deployment',
+    'erp.results.fasterDescription': 'Accelerated implementation with our proven Odoo deployment methodology.',
+    'erp.results.uptime': '99.9% Uptime',
+    'erp.results.uptimeDescription': 'Enterprise-grade hosting infrastructure with guaranteed availability.',
+    'erp.results.customSolutions': 'Custom Solutions',
+    'erp.results.customDescription': 'Tailored Odoo modules that perfectly fit your business processes.',
+    'erp.results.secureCompliant': 'Secure & Compliant',
+    'erp.results.secureDescription': 'Bank-level security with full regulatory compliance support.',
+
+    'erp.process.title': 'Our Odoo Implementation Process',
+    'erp.process.subtitle': 'A proven, structured approach that ensures successful Odoo deployment while minimizing business disruption and maximizing user adoption.',
+
+    'erp.cta.title': 'Ready for Complete Odoo Solution?',
+    'erp.cta.subtitle': 'Transform your business with our comprehensive Odoo hosting, multi-environment setup, and custom development services. Let\'s build your perfect ERP solution.',
+    'erp.cta.startProject': 'Start Your Odoo Project',
+
+    // AI Advisory Page
+    'ai.hero.title': 'Multi-Model AI',
+    'ai.hero.titleHighlight': 'Strategy & Agents',
+    'ai.hero.subtitle': 'Transform your enterprise with strategic multi-model AI implementations, private chatbots, and intelligent business agents designed for maximum efficiency and security.',
+    'ai.hero.startJourney': 'Start Your AI Journey',
+    'ai.hero.viewDemo': 'View AI Demo',
+    'ai.hero.stackTitle': 'AI Implementation Stack',
+    'ai.hero.multiModel': 'Multi-Model Strategy',
+    'ai.hero.privateChatbots': 'Private Chatbots',
+    'ai.hero.aiAgents': 'AI Agents',
+    'ai.hero.optimized': 'Optimized',
+    'ai.hero.secure': 'Secure',
+    'ai.hero.intelligent': 'Intelligent',
+    'ai.hero.readinessScore': 'AI Readiness Score: 95% - Advanced multi-model AI implementation ready',
+
+    'ai.capabilities.title': 'Advanced AI Capabilities',
+    'ai.capabilities.subtitle': 'From multi-model strategies to intelligent agents, we provide comprehensive AI advisory services that leverage the latest advances in artificial intelligence.',
+    'ai.capabilities.multiModel.title': 'Multi-Model Strategy',
+    'ai.capabilities.multiModel.description': 'Comprehensive AI strategy leveraging multiple models for optimal performance and cost efficiency.',
+    'ai.capabilities.privateChatbots.title': 'Private Chatbots',
+    'ai.capabilities.privateChatbots.description': 'Secure, enterprise-grade chatbots with custom knowledge bases and privacy-first architecture.',
+    'ai.capabilities.aiAgentDesign.title': 'AI Agent Design',
+    'ai.capabilities.aiAgentDesign.description': 'Intelligent business agents that automate complex workflows and decision-making processes.',
+    'ai.capabilities.aiEthics.title': 'AI Ethics & Governance',
+    'ai.capabilities.aiEthics.description': 'Responsible AI frameworks ensuring ethical deployment and regulatory compliance.',
+    'ai.capabilities.dataInfrastructure.title': 'Data Infrastructure',
+    'ai.capabilities.dataInfrastructure.description': 'Scalable data pipelines and architecture optimized for AI workloads.',
+    'ai.capabilities.aiIntegration.title': 'AI Integration',
+    'ai.capabilities.aiIntegration.description': 'Seamless integration of AI capabilities into existing business processes.',
+    'ai.services.title': 'Specialized AI Services',
+    'ai.services.subtitle': 'Our expertise spans the full spectrum of enterprise AI implementation, from strategic planning to hands-on development of intelligent systems.',
+
+    'ai.solutions.title': 'AI Solutions by Use Case',
+    'ai.solutions.subtitle': 'Tailored AI implementations designed for specific business functions and strategic objectives across your organization.',
+
+    'ai.results.title': 'Proven AI Results',
+    'ai.results.subtitle': 'Our AI implementations deliver measurable business impact through intelligent automation and strategic optimization.',
+    'ai.results.costReduction': 'Cost Reduction',
+    'ai.results.costDescription': 'Average cost savings through multi-model optimization',
+    'ai.results.automationRate': 'Automation Rate',
+    'ai.results.automationDescription': 'Business processes automated with AI agents',
+    'ai.results.availability': 'Availability',
+    'ai.results.availabilityDescription': 'Private chatbots providing round-the-clock support',
+    'ai.results.dataSecurity': 'Data Security',
+    'ai.results.dataSecurityDescription': 'Enterprise-grade security for private AI systems',
+
+    'ai.process.title': 'Our AI Implementation Process',
+    'ai.process.subtitle': 'A structured, iterative approach that ensures successful AI adoption while minimizing risk and maximizing value creation throughout your transformation journey.',
+
+    'ai.industries.title': 'Industry-Specific',
+    'ai.industries.titleHighlight': 'AI Solutions',
+    'ai.industries.subtitle': 'Our deep domain expertise across multiple industries enables us to deliver AI solutions that address sector-specific challenges and regulatory requirements.',
+    'ai.industries.discussIndustry': 'Discuss Your Industry',
+
+    'ai.cta.title': 'Ready to Implement Advanced AI?',
+    'ai.cta.subtitle': 'Transform your business with multi-model AI strategies, private chatbots, and intelligent agents designed for your specific needs and security requirements.',
+    'ai.cta.startImplementation': 'Start AI Implementation',
+
+    // Business Automation Page
+    'automation.hero.title': 'Intelligent Business',
+    'automation.hero.titleHighlight': 'Automation Solutions',
+    'automation.hero.subtitle': 'Transform your operations with comprehensive automation solutions including process automation, marketing automation, AI vocal agents, recruitment systems, and competitive intelligence.',
+    'automation.hero.automateBusiness': 'Automate Your Business',
+    'automation.hero.viewDemo': 'View Automation Demo',
+    'automation.hero.controlCenter': 'Automation Control Center',
+    'automation.hero.activeWorkflows': 'Active Workflows',
+    'automation.hero.aiCalls': 'AI Calls',
+    'automation.hero.today': 'Today',
+    'automation.hero.performance': 'Automation Performance',
+    'automation.hero.uptime': 'Uptime',
+    'automation.hero.timeSaved': 'Time Saved',
+    'automation.hero.active': 'Active',
+
+    'automation.capabilities.title': 'Comprehensive Automation Capabilities',
+    'automation.capabilities.subtitle': 'From process automation to AI-powered vocal agents, we provide end-to-end business automation solutions that transform how your organization operates and competes.',
+
+    'automation.services.title': 'Specialized Automation Services',
+    'automation.services.subtitle': 'Our expertise spans the full spectrum of business automation, from workflow optimization to AI-powered customer engagement and competitive intelligence.',
+
+    'automation.solutions.title': 'Automation Solutions by Domain',
+    'automation.solutions.subtitle': 'Specialized automation solutions designed for different business functions and strategic objectives across your organization.',
+
+    'automation.platforms.title': 'Leading Automation Platforms',
+    'automation.platforms.subtitle': 'We specialize in implementing and customizing the industry\'s most powerful automation platforms to meet your unique business requirements.',
+
+    'automation.results.title': 'Measurable Automation Impact',
+    'automation.results.subtitle': 'Our automation solutions deliver tangible results that drive operational efficiency and strategic competitive advantages across your organization.',
+    'automation.results.timeSavings': 'Time Savings',
+    'automation.results.timeSavingsDescription': 'Average reduction in manual task completion time',
+    'automation.results.accuracyRate': 'Accuracy Rate',
+    'automation.results.accuracyDescription': 'Improvement in process accuracy and error reduction',
+    'automation.results.roiIncrease': 'ROI Increase',
+    'automation.results.roiDescription': 'Average return on automation investment within 12 months',
+    'automation.results.operation': 'Operation',
+    'automation.results.operationDescription': 'Continuous automated operations without downtime',
+
+    'automation.process.title': 'Our Automation Implementation Process',
+    'automation.process.subtitle': 'A structured approach that ensures successful automation deployment with maximum user adoption and business value creation.',
+
+    'automation.cta.title': 'Ready to Automate Your Business?',
+    'automation.cta.subtitle': 'Transform your operations with intelligent automation solutions including AI vocal agents, process automation, and competitive intelligence systems designed for your success.',
+    'automation.cta.startJourney': 'Start Automation Journey',
+  },
+  fr: {
+    // Navigation
+    'nav.home': 'Accueil',
+    'nav.services': 'Services',
+    'nav.about': 'À Propos',
+    'nav.contact': 'Contact',
+    'nav.getStarted': 'Commencer',
+    
+    // Services
+    'services.aiAdvisory': 'Conseil en IA',
+    'services.erpImplementation': 'Implémentation ERP',
+    'services.businessAutomation': 'Automatisation Métier',
+    
+    // Hero Section
+    'hero.title': 'La Technologie',
+    'hero.titleHighlight': 'au Service du Business',
+    'hero.subtitle': 'Composez votre business autour des évolutions technologiques. Accélérez vos processus grâce aux avancées technologiques avec nos solutions d\'IA, d\'ERP et d\'automatisation.',
+    'hero.startTransformation': 'Démarrez Votre Transformation',
+    'hero.learnMore': 'En Savoir Plus',
+    
+    // Services Section
+    'services.title': 'Solutions Technologiques Avancées',
+    'services.subtitle': 'Services technologiques complets pour accélérer l\'innovation et optimiser vos processus métier grâce aux dernières avancées technologiques.',
+    
+    // AI Advisory Service
+    'ai.title': 'Conseil en IA',
+    'ai.description': 'Stratégies IA multi-modèles, chatbots privés et agents intelligents pour maximiser l\'efficacité de votre business.',
+    'ai.feature1': 'Stratégie Multi-Modèles',
+    'ai.feature2': 'Chatbots Privés',
+    'ai.feature3': 'Agents IA Métier',
+    
+    // ERP Service
+    'erp.title': 'Implémentation ERP',
+    'erp.description': 'Solutions Odoo complètes avec hébergement cloud, environnements multiples et développement sur mesure pour votre business.',
+    'erp.feature1': 'Hébergement Cloud Odoo',
+    'erp.feature2': 'Environnements Multiples',
+    'erp.feature3': 'Développement Sur Mesure',
+    
+    // Business Automation Service
+    'automation.title': 'Automatisation Métier',
+    'automation.description': 'Automatisation intelligente des processus, du marketing et agents vocaux IA pour accélérer votre business.',
+    'automation.feature1': 'Automatisation Processus',
+    'automation.feature2': 'Marketing Automatisé',
+    'automation.feature3': 'Agents Vocaux IA',
+    
+    // Stats
+    'stats.projectsDelivered': 'Projets Livrés',
+    'stats.clientSatisfaction': 'Satisfaction Client',
+    'stats.enterpriseClients': 'Clients Entreprise',
+    'stats.supportAvailable': 'Support Disponible',
+    
+    // Why Choose Us
+    'whyChoose.title': 'Pourquoi les Leaders',
+    'whyChoose.titleHighlight': 'Choisissent TechWave',
+    'whyChoose.subtitle': 'Nous combinons une expertise technique approfondie avec un sens stratégique des affaires pour livrer des solutions qui répondent aux défis d\'aujourd\'hui et anticipent les opportunités de demain.',
+    'whyChoose.security.title': 'Sécurité Entreprise',
+    'whyChoose.security.description': 'Protocoles de sécurité bancaire et frameworks de conformité pour protéger vos données.',
+    'whyChoose.team.title': 'Équipe Experte',
+    'whyChoose.team.description': 'Professionnels certifiés avec une expertise métier approfondie et des résultats prouvés.',
+    'whyChoose.deployment.title': 'Déploiement Rapide',
+    'whyChoose.deployment.description': 'Méthodologies agiles et frameworks éprouvés pour une mise en valeur plus rapide.',
+    'whyChoose.cta.description': 'Rejoignez les leaders qui font confiance à TechWave Office pour leurs initiatives de transformation digitale.',
+    
+    // Testimonials
+    'testimonials.title': 'Approuvé par les Leaders',
+    'testimonials.subtitle': 'Ne nous croyez pas sur parole. Découvrez ce que nos clients disent de leur parcours de transformation avec TechWave Office.',
+    'testimonials.quote1': 'TechWave Office a complètement transformé notre infrastructure de données. Leur conseil en IA nous a aidés à atteindre 40% de gains d\'efficacité opérationnelle.',
+    'testimonials.quote2': 'L\'implémentation ERP s\'est déroulée sans accroc. Ils ont livré à temps et leur support continu est exceptionnel.',
+    'testimonials.quote3': 'Leurs solutions d\'automatisation métier nous ont donné des insights que nous n\'aurions jamais pensé possibles. Le ROI était évident dès le premier trimestre.',
+    
+    // CTA Section
+    'cta.title': 'Prêt à Mener l\'Avenir ?',
+    'cta.subtitle': 'Transformez votre business avec des solutions technologiques de pointe conçues pour les défis de demain.',
+    
+    // Common
+    'common.learnMore': 'En Savoir Plus',
+    'common.readyToTransform': 'Prêt à Transformer Votre Business ?',
+    'common.scheduleConsultation': 'Planifier une Consultation',
+    'common.getStartedToday': 'Commencer Aujourd\'hui',
+    'common.exploreServices': 'Découvrir nos Services',
+    
+    // Footer
+    'footer.description': 'Consultancy technologique innovant mettant la technologie au service du business avec des solutions d\'IA, d\'ERP et d\'automatisation de pointe.',
+    'footer.services': 'Services',
+    'footer.company': 'Entreprise',
+    'footer.contact': 'Contact',
+    'footer.aboutUs': 'À Propos',
+    'footer.privacyPolicy': 'Politique de Confidentialité',
+    'footer.termsOfService': 'Conditions d\'Utilisation',
+    'footer.allRightsReserved': 'Tous droits réservés.',
+
+    // About Page
+    'about.hero.title': 'Pionniers de l\'Avenir de la',
+    'about.hero.titleHighlight': 'Technologie d\'Entreprise',
+    'about.hero.subtitle': 'TechWave Office est un consultancy technologique innovant dédié à la transformation des entreprises grâce à des solutions d\'IA, d\'ERP et d\'intelligence d\'affaires innovantes.',
+    
+    'about.mission.title': 'Notre Mission',
+    'about.mission.description': 'Nous permettons aux organisations d\'exploiter le pouvoir transformateur de la technologie, en livrant des solutions qui stimulent l\'innovation, l\'efficacité et la croissance durable dans un monde de plus en plus numérique.',
+    'about.mission.point1': 'Permettre la transformation digitale à grande échelle',
+    'about.mission.point2': 'Livrer des résultats business mesurables',
+    'about.mission.point3': 'Favoriser des partenariats stratégiques à long terme',
+    
+    'about.vision.title': 'Notre Vision',
+    'about.vision.description': 'Être le leader mondial du conseil en technologie d\'entreprise, reconnu pour nos solutions innovantes, nos résultats clients exceptionnels et notre engagement à façonner l\'avenir du business grâce à la technologie.',
+    'about.vision.futureReady': 'Solutions Prêtes pour l\'Avenir',
+    'about.vision.futureDescription': 'Nous ne résolvons pas seulement les défis d\'aujourd\'hui – nous préparons votre organisation aux opportunités de demain.',
+    
+    'about.values.title': 'Nos Valeurs Fondamentales',
+    'about.values.subtitle': 'Les principes qui guident nos décisions, façonnent notre culture et motivent notre engagement à livrer une valeur exceptionnelle pour nos clients.',
+    'about.values.innovation.title': 'Innovation d\'Abord',
+    'about.values.innovation.description': 'Nous restons à l\'avant-garde des tendances technologiques pour livrer des solutions de pointe qui génèrent une vraie valeur business.',
+    'about.values.integrity.title': 'Intégrité & Confiance',
+    'about.values.integrity.description': 'Nous construisons des partenariats durables grâce à une communication transparente et un engagement inébranlable envers nos clients.',
+    'about.values.clientSuccess.title': 'Succès Client',
+    'about.values.clientSuccess.description': 'Votre succès est notre succès. Nous mesurons notre impact par les résultats tangibles que nous livrons pour votre organisation.',
+    'about.values.growth.title': 'Croissance Continue',
+    'about.values.growth.description': 'Nous favorisons une culture d\'apprentissage et d\'amélioration, évoluant constamment notre expertise et nos méthodologies.',
+    
+    'about.team.title': 'Équipe de Direction',
+    'about.team.subtitle': 'Rencontrez les professionnels expérimentés qui dirigent notre mission de transformer les entreprises grâce à des solutions technologiques innovantes.',
+    'about.team.ceo.role': 'PDG & Responsable Stratégie IA',
+    'about.team.ceo.expertise': 'Stratégie IA, Apprentissage Automatique',
+    'about.team.ceo.description': 'Ancienne Directrice IA dans des entreprises Fortune 500, spécialisée dans la transformation IA d\'entreprise.',
+    'about.team.cto.role': 'CTO & Architecte Solutions',
+    'about.team.cto.expertise': 'Systèmes ERP, Architecture Cloud',
+    'about.team.cto.description': 'Expert en implémentations ERP à grande échelle et optimisation d\'infrastructure cloud.',
+    'about.team.head.role': 'Responsable Intelligence d\'Affaires',
+    'about.team.head.expertise': 'Analytique de Données, Visualisation',
+    'about.team.head.description': 'Leader en science des données avec expertise en analytique avancée et plateformes d\'intelligence d\'affaires.',
+    'about.team.principal.role': 'Consultant Principal',
+    'about.team.principal.expertise': 'Gestion du Changement, Formation',
+    'about.team.principal.description': 'Spécialiste en transformation organisationnelle axé sur l\'adoption utilisateur et la gestion du changement.',
+    
+    'about.achievements.title': 'Nos Réalisations',
+    'about.achievements.subtitle': 'Reconnaissance et jalons qui reflètent notre engagement envers l\'excellence et notre impact sur l\'industrie du conseil technologique.',
+    'about.achievements.recognition.title': 'Reconnaissance Industrielle',
+    'about.achievements.recognition.item1': 'Top Firme Conseil IA 2024',
+    'about.achievements.recognition.item2': 'Partenaire Gold Microsoft',
+    'about.achievements.recognition.item3': 'Partenaire Premier Tableau',
+    'about.achievements.recognition.item4': 'Partenaire Implémentation Certifié SAP',
+    'about.achievements.reach.title': 'Portée Mondiale',
+    'about.achievements.reach.item1': '50+ Clients Entreprise',
+    'about.achievements.reach.item2': '15 Pays Servis',
+    'about.achievements.reach.item3': '150+ Projets Livrés',
+    'about.achievements.reach.item4': '98% Satisfaction Client',
+    'about.achievements.team.title': 'Équipe Experte',
+    'about.achievements.team.item1': '25+ Consultants Certifiés',
+    'about.achievements.team.item2': '200+ Années d\'Expérience Combinée',
+    'about.achievements.team.item3': 'Data Scientists Niveau PhD',
+    'about.achievements.team.item4': 'Architectes d\'Entreprise',
+    
+    'about.services.title': 'Ce Que Nous Faisons',
+    'about.services.subtitle': 'Notre suite complète de services conçue pour accélérer votre transformation digitale et stimuler une croissance business durable.',
+    'about.services.ai.description': 'Planification stratégique IA et guidance d\'implémentation',
+    'about.services.erp.description': 'Solutions complètes de planification des ressources d\'entreprise',
+    'about.services.automation.description': 'Plateformes d\'analytique avancée et de visualisation de données',
+    'about.services.exploreServices': 'Découvrir Nos Services',
+    
+    'about.cta.title': 'Prêt à Vous Associer avec Nous ?',
+    'about.cta.subtitle': 'Discutons de comment TechWave Office peut aider à transformer votre business grâce à des solutions technologiques innovantes adaptées à vos besoins uniques.',
+    'about.cta.startConversation': 'Commencer la Conversation',
+
+    // Contact Page
+    'contact.hero.title': 'Commençons Votre',
+    'contact.hero.titleHighlight': 'Transformation Digitale',
+    'contact.hero.subtitle': 'Prêt à transformer votre business avec une technologie de pointe ? Nous sommes là pour vous aider à naviguer votre parcours digital et atteindre des résultats extraordinaires.',
+    
+    'contact.info.email.title': 'Nous Écrire',
+    'contact.info.email.description': 'Envoyez-nous un email et nous répondrons dans les 24 heures',
+    'contact.info.phone.title': 'Nous Appeler',
+    'contact.info.phone.description': 'Parlez directement avec nos experts pendant les heures d\'ouverture',
+    'contact.info.visit.title': 'Nous Rendre Visite',
+    'contact.info.visit.description': 'Planifiez une consultation en personne à notre siège social',
+    'contact.info.getInTouch': 'Nous Contacter',
+    
+    'contact.form.title': 'Envoyez-nous un Message',
+    'contact.form.subtitle': 'Parlez-nous de votre projet et nous vous répondrons avec une proposition personnalisée et un calendrier de consultation.',
+    'contact.form.fullName': 'Nom Complet',
+    'contact.form.fullNamePlaceholder': 'Votre nom complet',
+    'contact.form.emailAddress': 'Adresse Email',
+    'contact.form.emailPlaceholder': 'votre.email@entreprise.com',
+    'contact.form.companyName': 'Nom de l\'Entreprise',
+    'contact.form.companyPlaceholder': 'Le nom de votre entreprise',
+    'contact.form.phoneNumber': 'Numéro de Téléphone',
+    'contact.form.serviceOfInterest': 'Service d\'Intérêt',
+    'contact.form.selectService': 'Sélectionnez un service',
+    'contact.form.generalConsultation': 'Audit',
+    'contact.form.other': 'Autre',
+    'contact.form.projectDetails': 'Détails du Projet',
+    'contact.form.projectPlaceholder': 'Parlez-nous de votre projet, défis et objectifs. Plus vous fournissez de détails, mieux nous pouvons vous aider.',
+    'contact.form.sendMessage': 'Envoyer le Message',
+    'contact.form.sending': 'Envoi en cours...',
+    'contact.form.privacyNote': 'En soumettant ce formulaire, vous acceptez notre politique de confidentialité et nos conditions d\'utilisation.',
+    
+    'contact.success.title': 'Merci !',
+    'contact.success.message': 'Nous avons reçu votre message et vous répondrons dans les 24 heures. Notre équipe est ravie de discuter de comment nous pouvons aider à transformer votre business.',
+    'contact.success.whatsNext': 'Et Maintenant ?',
+    'contact.success.step1': 'Notre équipe examinera votre demande dans les 2 heures',
+    'contact.success.step2': 'Vous recevrez une réponse personnalisée dans les 24 heures',
+    'contact.success.step3': 'Nous planifierons un appel de consultation à votre convenance',
+    'contact.success.sendAnother': 'Envoyer un Autre Message',
+    'contact.success.emailDirect': 'Nous Écrire Directement',
+
+    // ERP Implementation Page
+    'erp.hero.title': 'Hébergement Odoo Complet',
+    'erp.hero.titleHighlight': '& Développement',
+    'erp.hero.subtitle': 'Transformez votre business avec des solutions Odoo complètes incluant hébergement cloud sécurisé, gestion multi-environnements et services de développement sur mesure adaptés à vos besoins.',
+    'erp.hero.startJourney': 'Démarrez Votre Parcours Odoo',
+    'erp.hero.viewDemo': 'Voir la Démo Odoo',
+    'erp.hero.stackTitle': 'Stack d\'Implémentation Odoo',
+    'erp.hero.cloudHosting': 'Hébergement Cloud',
+    'erp.hero.multiEnvironment': 'Multi-Environnements',
+    'erp.hero.customDevelopment': 'Développement Sur Mesure',
+    'erp.hero.active': 'Actif',
+    'erp.hero.configured': 'Configuré',
+    'erp.hero.ready': 'Prêt',
+    'erp.hero.completeSolution': 'Solution Odoo Complète : De l\'hébergement au développement sur mesure',
+
+    'erp.services.title': 'Services Odoo Complets',
+    'erp.services.subtitle': 'De l\'hébergement cloud sécurisé au développement de modules personnalisés, nous fournissons des solutions Odoo de bout en bout qui transforment vos opérations business et stimulent une croissance durable.',
+
+    'erp.expertise.title': 'Expertise Odoo Spécialisée',
+    'erp.expertise.subtitle': 'Notre expertise Odoo approfondie couvre tous les aspects de l\'implémentation, de la gestion d\'infrastructure au développement personnalisé et au support continu.',
+
+    'erp.platforms.title': 'Options de Plateforme Odoo',
+    'erp.platforms.subtitle': 'Choisissez la bonne solution Odoo pour vos besoins business, de l\'édition communautaire aux fonctionnalités entreprise avec capacités de développement personnalisé.',
+
+    'erp.results.title': 'Résultats Odoo Prouvés',
+    'erp.results.subtitle': 'Nos implémentations Odoo livrent des résultats mesurables qui stimulent l\'excellence opérationnelle et des avantages concurrentiels durables à travers votre organisation.',
+    'erp.results.fasterDeployment': '50% de Déploiement Plus Rapide',
+    'erp.results.fasterDescription': 'Implémentation accélérée avec notre méthodologie de déploiement Odoo éprouvée.',
+    'erp.results.uptime': '99,9% de Disponibilité',
+    'erp.results.uptimeDescription': 'Infrastructure d\'hébergement de niveau entreprise avec disponibilité garantie.',
+    'erp.results.customSolutions': 'Solutions Personnalisées',
+    'erp.results.customDescription': 'Modules Odoo sur mesure qui s\'adaptent parfaitement à vos processus métier.',
+    'erp.results.secureCompliant': 'Sécurisé & Conforme',
+    'erp.results.secureDescription': 'Sécurité de niveau bancaire avec support complet de conformité réglementaire.',
+
+    'erp.process.title': 'Notre Processus d\'Implémentation Odoo',
+    'erp.process.subtitle': 'Une approche structurée et éprouvée qui assure un déploiement Odoo réussi tout en minimisant les perturbations business et en maximisant l\'adoption utilisateur.',
+
+    'erp.cta.title': 'Prêt pour une Solution Odoo Complète ?',
+    'erp.cta.subtitle': 'Transformez votre business avec notre hébergement Odoo complet, configuration multi-environnements et services de développement personnalisé. Construisons votre solution ERP parfaite.',
+    'erp.cta.startProject': 'Démarrez Votre Projet Odoo',
+
+    // AI Advisory Page - Complete French Translation
+    'ai.hero.title': 'IA Multi-Modèles',
+    'ai.hero.titleHighlight': 'Stratégie & Agents',
+    'ai.hero.subtitle': 'Transformez votre entreprise avec des implémentations IA stratégiques multi-modèles, des chatbots privés et des agents business intelligents conçus pour une efficacité et sécurité maximales.',
+    'ai.hero.startJourney': 'Démarrez Votre Parcours IA',
+    'ai.hero.viewDemo': 'Voir la Démo IA',
+    'ai.hero.stackTitle': 'Stack d\'Implémentation IA',
+    'ai.hero.multiModel': 'Stratégie Multi-Modèles',
+    'ai.hero.privateChatbots': 'Chatbots Privés',
+    'ai.hero.aiAgents': 'Agents IA',
+    'ai.hero.optimized': 'Optimisé',
+    'ai.hero.secure': 'Sécurisé',
+    'ai.hero.intelligent': 'Intelligent',
+    'ai.hero.readinessScore': 'Score de Préparation IA : 95% - Implémentation IA multi-modèles avancée prête',
+
+    'ai.capabilities.title': 'Capacités IA Avancées',
+    'ai.capabilities.subtitle': 'Des stratégies multi-modèles aux agents intelligents, nous fournissons des services de conseil IA complets qui exploitent les dernières avancées en intelligence artificielle.',
+    'ai.capabilities.multiModel.title': 'Multi-Model Strategy',
+    'ai.capabilities.multiModel.description': 'Comprehensive AI strategy leveraging multiple models for optimal performance and cost efficiency.',
+    'ai.capabilities.privateChatbots.title': 'Private Chatbots',
+    'ai.capabilities.privateChatbots.description': 'Secure, enterprise-grade chatbots with custom knowledge bases and privacy-first architecture.',
+    'ai.capabilities.aiAgentDesign.title': 'AI Agent Design',
+    'ai.capabilities.aiAgentDesign.description': 'Intelligent business agents that automate complex workflows and decision-making processes.',
+    'ai.capabilities.aiEthics.title': 'AI Ethics & Governance',
+    'ai.capabilities.aiEthics.description': 'Responsible AI frameworks ensuring ethical deployment and regulatory compliance.',
+    'ai.capabilities.dataInfrastructure.title': 'Data Infrastructure',
+    'ai.capabilities.dataInfrastructure.description': 'Scalable data pipelines and architecture optimized for AI workloads.',
+    'ai.capabilities.aiIntegration.title': 'AI Integration',
+    'ai.capabilities.aiIntegration.description': 'Seamless integration of AI capabilities into existing business processes.',
+    'ai.services.title': 'Services IA Spécialisés',
+    'ai.services.subtitle': 'Notre expertise couvre tout le spectre de l\'implémentation IA d\'entreprise, de la planification stratégique au développement pratique de systèmes intelligents.',
+
+    'ai.solutions.title': 'Solutions IA par Cas d\'Usage',
+    'ai.solutions.subtitle': 'Implémentations IA sur mesure conçues pour des fonctions business spécifiques et des objectifs stratégiques à travers votre organisation.',
+
+    'ai.results.title': 'Résultats IA Prouvés',
+    'ai.results.subtitle': 'Nos implémentations IA livrent un impact business mesurable grâce à l\'automatisation intelligente et l\'optimisation stratégique.',
+    'ai.results.costReduction': 'Réduction des Coûts',
+    'ai.results.costDescription': 'Économies moyennes grâce à l\'optimisation multi-modèles',
+    'ai.results.automationRate': 'Taux d\'Automatisation',
+    'ai.results.automationDescription': 'Processus business automatisés avec des agents IA',
+    'ai.results.availability': 'Disponibilité',
+    'ai.results.availabilityDescription': 'Chatbots privés fournissant un support 24h/24',
+    'ai.results.dataSecurity': 'Sécurité des Données',
+    'ai.results.dataSecurityDescription': 'Sécurité de niveau entreprise pour les systèmes IA privés',
+
+    'ai.process.title': 'Notre Processus d\'Implémentation IA',
+    'ai.process.subtitle': 'Une approche structurée et itérative qui assure une adoption IA réussie tout en minimisant les risques et en maximisant la création de valeur tout au long de votre parcours de transformation.',
+
+    'ai.industries.title': 'Solutions IA',
+    'ai.industries.titleHighlight': 'Spécifiques par Secteur',
+    'ai.industries.subtitle': 'Notre expertise métier approfondie dans plusieurs industries nous permet de livrer des solutions IA qui répondent aux défis spécifiques au secteur et aux exigences réglementaires.',
+    'ai.industries.discussIndustry': 'Discutez de Votre Secteur',
+
+    'ai.cta.title': 'Prêt à Implémenter l\'IA Avancée ?',
+    'ai.cta.subtitle': 'Transformez votre business avec des stratégies IA multi-modèles, des chatbots privés et des agents intelligents conçus pour vos besoins spécifiques et exigences de sécurité.',
+    'ai.cta.startImplementation': 'Démarrer l\'Implémentation IA',
+
+    // Business Automation Page
+    'automation.hero.title': 'Solutions d\'Automatisation',
+    'automation.hero.titleHighlight': 'Business Intelligentes',
+    'automation.hero.subtitle': 'Transformez vos opérations avec des solutions d\'automatisation complètes incluant automatisation des processus, marketing automation, agents vocaux IA, systèmes de recrutement et intelligence concurrentielle.',
+    'automation.hero.automateBusiness': 'Automatisez Votre Business',
+    'automation.hero.viewDemo': 'Voir la Démo d\'Automatisation',
+    'automation.hero.controlCenter': 'Centre de Contrôle d\'Automatisation',
+    'automation.hero.activeWorkflows': 'Workflows Actifs',
+    'automation.hero.aiCalls': 'Appels IA',
+    'automation.hero.today': 'Aujourd\'hui',
+    'automation.hero.performance': 'Performance d\'Automatisation',
+    'automation.hero.uptime': 'Disponibilité',
+    'automation.hero.timeSaved': 'Temps Économisé',
+    'automation.hero.active': 'Actif',
+
+    'automation.capabilities.title': 'Capacités d\'Automatisation Complètes',
+    'automation.capabilities.subtitle': 'De l\'automatisation des processus aux agents vocaux alimentés par l\'IA, nous fournissons des solutions d\'automatisation business de bout en bout qui transforment la façon dont votre organisation opère et concurrence.',
+
+    'automation.services.title': 'Services d\'Automatisation Spécialisés',
+    'automation.services.subtitle': 'Notre expertise couvre tout le spectre de l\'automatisation business, de l\'optimisation des workflows à l\'engagement client alimenté par l\'IA et l\'intelligence concurrentielle.',
+
+    'automation.solutions.title': 'Solutions d\'Automatisation par Domaine',
+    'automation.solutions.subtitle': 'Solutions d\'automatisation spécialisées conçues pour différentes fonctions business et objectifs stratégiques à travers votre organisation.',
+
+    'automation.platforms.title': 'Plateformes d\'Automatisation Leaders',
+    'automation.platforms.subtitle': 'Nous nous spécialisons dans l\'implémentation et la personnalisation des plateformes d\'automatisation les plus puissantes de l\'industrie pour répondre à vos exigences business uniques.',
+
+    'automation.results.title': 'Impact d\'Automatisation Mesurable',
+    'automation.results.subtitle': 'Nos solutions d\'automatisation livrent des résultats tangibles qui stimulent l\'efficacité opérationnelle et des avantages concurrentiels stratégiques à travers votre organisation.',
+    'automation.results.timeSavings': 'Économies de Temps',
+    'automation.results.timeSavingsDescription': 'Réduction moyenne du temps de completion des tâches manuelles',
+    'automation.results.accuracyRate': 'Taux de Précision',
+    'automation.results.accuracyDescription': 'Amélioration de la précision des processus et réduction des erreurs',
+    'automation.results.roiIncrease': 'Augmentation du ROI',
+    'automation.results.roiDescription': 'Retour moyen sur investissement d\'automatisation en 12 mois',
+    'automation.results.operation': 'Opération',
+    'automation.results.operationDescription': 'Opérations automatisées continues sans interruption',
+
+    'automation.process.title': 'Notre Processus d\'Implémentation d\'Automatisation',
+    'automation.process.subtitle': 'Une approche structurée qui assure un déploiement d\'automatisation réussi avec une adoption utilisateur maximale et une création de valeur business.',
+
+    'automation.cta.title': 'Prêt à Automatiser Votre Business ?',
+    'automation.cta.subtitle': 'Transformez vos opérations avec des solutions d\'automatisation intelligentes incluant agents vocaux IA, automatisation des processus et systèmes d\'intelligence concurrentielle conçus pour votre succès.',
+    'automation.cta.startJourney': 'Démarrer le Parcours d\'Automatisation',
+  },
+};
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>('en');
+
+  const t = (key: string): string => {
+    return translations[language][key as keyof typeof translations['en']] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+export const useLanguage = (): LanguageContextType => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
