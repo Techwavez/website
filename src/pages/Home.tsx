@@ -16,7 +16,6 @@ import {
   Phone
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
-import LanguageDebugger from '../components/LanguageDebugger';
 
 const Home: React.FC = () => {
   const { t } = useLanguage();
@@ -110,19 +109,6 @@ const Home: React.FC = () => {
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Announcement: Browser Language Detection (temporary) */}
-      <section className="py-4 bg-gradient-to-r from-neon-blue-500/10 to-gradient-lime-500/10 border-b border-neon-blue-500/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center space-x-3 text-center">
-            <Zap className="w-5 h-5 text-neon-blue-500" />
-            <p className="text-sm text-gray-300 font-inter">
-              <span className="font-semibold text-neon-blue-400">New Feature:</span> Website language now automatically detects your browser preferences! 
-              <span className="hidden sm:inline"> (English/French supported)</span>
-            </p>
           </div>
         </div>
       </section>
@@ -351,9 +337,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Language Debug Panel (temporary for testing) */}
-      <LanguageDebugger />
     </div>
   );
 };
