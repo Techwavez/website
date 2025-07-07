@@ -99,6 +99,11 @@ const Header: React.FC = () => {
             {/* Language Switcher */}
             <LanguageSwitcher />
             
+            {/* Debug: Language Detection Info (temporary) */}
+            <div className="hidden xl:block text-xs text-gray-400 bg-navy-800/50 px-3 py-1 rounded">
+              Browser: {navigator.language} | Detected: {localStorage.getItem('preferred-language') || 'auto'}
+            </div>
+            
             <Link
               to="/contact"
               className="bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 text-navy-900 px-6 py-2 rounded-lg font-inter font-medium hover:shadow-lg hover:shadow-neon-blue-500/25 transition-all duration-300 transform hover:scale-105"
