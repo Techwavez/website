@@ -28,6 +28,7 @@ const Header: React.FC = () => {
         { name: t('services.aiAdvisory'), path: '/services/ai-advisory' },
         { name: t('services.erpImplementation'), path: '/services/erp-implementation' },
         { name: t('services.businessAutomation'), path: '/services/business-intelligence' },
+        { name: t('services.financialServices'), path: '/services/financial-services' },
       ]
     },
     { name: t('nav.about'), path: '/about' },
