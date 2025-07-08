@@ -243,7 +243,7 @@ const FinancialServices: React.FC = () => {
               <div key={index} className="group bg-navy-900/50 border border-neon-blue-500/20 rounded-lg p-8 hover:border-neon-blue-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-neon-blue-500/10">
                 <div className="flex items-center space-x-4 mb-6">
                   <div className="w-12 h-12 bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 rounded-lg flex items-center justify-center">
-                    <service.icon className="w-6 h-6 text-white" />
+                    <service.icon className="w-6 h-6 text-navy-900" />
                   </div>
                   <h3 className="text-xl font-bold text-white font-orbitron group-hover:text-neon-blue-400 transition-colors">
                     {service.title}
@@ -289,7 +289,7 @@ const FinancialServices: React.FC = () => {
                 
                 <div className="relative bg-navy-800/50 border border-neon-blue-500/20 rounded-lg p-6 text-center hover:border-neon-blue-500/40 transition-all duration-300">
                   <div className="w-16 h-16 bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-xl font-bold text-white font-orbitron">{step.number}</span>
+                    <span className="text-xl font-bold text-navy-900 font-orbitron">{step.number}</span>
                   </div>
                   
                   <h3 className="text-lg font-bold text-white mb-3 font-orbitron">
@@ -328,7 +328,7 @@ const FinancialServices: React.FC = () => {
               <div key={index} className="bg-navy-900/50 border border-neon-blue-500/20 rounded-lg p-8 hover:border-neon-blue-500/40 transition-all duration-300">
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <type.icon className="w-8 h-8 text-white" />
+                    <type.icon className="w-8 h-8 text-navy-900" />
                   </div>
                   <h3 className="text-xl font-bold text-white font-orbitron">{type.title}</h3>
                 </div>
@@ -367,7 +367,7 @@ const FinancialServices: React.FC = () => {
             {whyChooseUs.map((reason, index) => (
               <div key={index} className="text-center group">
                 <div className="w-20 h-20 bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <reason.icon className="w-10 h-10 text-white" />
+                  <reason.icon className="w-10 h-10 text-navy-900" />
                 </div>
                 
                 <h3 className="text-lg font-bold text-white mb-4 font-orbitron group-hover:text-neon-blue-400 transition-colors">
