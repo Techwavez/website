@@ -206,6 +206,30 @@ const translations = {
     'contact.form.sending': 'Sending...',
     'contact.form.privacyNote': 'By submitting this form, you agree to our privacy policy and terms of service.',
     
+    // Form Validation Messages
+    'contact.form.validation.nameRequired': 'Full name is required',
+    'contact.form.validation.nameMinLength': 'Name must be at least 2 characters',
+    'contact.form.validation.nameMaxLength': 'Name must be less than 50 characters',
+    'contact.form.validation.emailRequired': 'Email address is required',
+    'contact.form.validation.emailInvalid': 'Please enter a valid email address',
+    'contact.form.validation.phoneInvalid': 'Please enter a valid phone number',
+    'contact.form.validation.serviceRequired': 'Please select a service',
+    'contact.form.validation.messageRequired': 'Project details are required',
+    'contact.form.validation.messageMinLength': 'Please provide more details (at least 10 characters)',
+    'contact.form.validation.messageMaxLength': 'Message is too long (maximum 1000 characters)',
+    
+    // Form Status Messages
+    'contact.form.status.emailSent': 'Message sent successfully!',
+    'contact.form.status.emailFailed': 'Failed to send message. Please try again.',
+    'contact.form.status.emailNotConfigured': 'Email service not configured. Please contact us directly.',
+    'contact.form.status.networkError': 'Network error. Please check your connection and try again.',
+    'contact.form.status.rateLimited': 'Please wait before sending another message.',
+    'contact.form.status.validationFailed': 'Please check your form data and try again.',
+    
+    // Form Actions
+    'contact.form.action.retry': 'Try Again',
+    'contact.form.action.contactDirect': 'Contact Us Directly',
+    
     'contact.success.title': 'Thank You!',
     'contact.success.message': 'We\'ve received your message and will get back to you within 24 hours. Our team is excited to discuss how we can help transform your business.',
     'contact.success.whatsNext': 'What\'s Next?',
@@ -907,6 +931,30 @@ const translations = {
     'contact.form.sendMessage': 'Envoyer le Message',
     'contact.form.sending': 'Envoi en cours...',
     'contact.form.privacyNote': 'En soumettant ce formulaire, vous acceptez notre politique de confidentialité et nos conditions d\'utilisation.',
+    
+    // Form Validation Messages
+    'contact.form.validation.nameRequired': 'Le nom complet est requis',
+    'contact.form.validation.nameMinLength': 'Le nom doit contenir au moins 2 caractères',
+    'contact.form.validation.nameMaxLength': 'Le nom doit contenir moins de 50 caractères',
+    'contact.form.validation.emailRequired': 'L\'adresse email est requise',
+    'contact.form.validation.emailInvalid': 'Veuillez saisir une adresse email valide',
+    'contact.form.validation.phoneInvalid': 'Veuillez saisir un numéro de téléphone valide',
+    'contact.form.validation.serviceRequired': 'Veuillez sélectionner un service',
+    'contact.form.validation.messageRequired': 'Les détails du projet sont requis',
+    'contact.form.validation.messageMinLength': 'Veuillez fournir plus de détails (au moins 10 caractères)',
+    'contact.form.validation.messageMaxLength': 'Le message est trop long (maximum 1000 caractères)',
+    
+    // Form Status Messages
+    'contact.form.status.emailSent': 'Message envoyé avec succès !',
+    'contact.form.status.emailFailed': 'Échec de l\'envoi du message. Veuillez réessayer.',
+    'contact.form.status.emailNotConfigured': 'Service email non configuré. Veuillez nous contacter directement.',
+    'contact.form.status.networkError': 'Erreur réseau. Vérifiez votre connexion et réessayez.',
+    'contact.form.status.rateLimited': 'Veuillez attendre avant d\'envoyer un autre message.',
+    'contact.form.status.validationFailed': 'Veuillez vérifier vos données et réessayer.',
+    
+    // Form Actions
+    'contact.form.action.retry': 'Réessayer',
+    'contact.form.action.contactDirect': 'Nous Contacter Directement',
     
     'contact.success.title': 'Merci !',
     'contact.success.message': 'Nous avons reçu votre message et vous répondrons dans les 24 heures. Notre équipe est ravie de discuter de comment nous pouvons aider à transformer votre business.',
