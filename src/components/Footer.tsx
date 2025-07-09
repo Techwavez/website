@@ -12,11 +12,12 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center space-x-3 mb-4">
-              <Zap className="w-8 h-8 text-neon-blue-500" />
-              <span className="text-xl font-space-grotesk font-bold text-white">
-                TechWave Office
-              </span>
+            <Link to="/" className="flex items-center justify-center lg:justify-start mb-4">
+              <img 
+                src="/Techwave Office Main Logo.png" 
+                alt="TechWave Office Logo" 
+                className="w-64 h-20 object-contain"
+              />
             </Link>
             <p className="text-gray-300 font-inter text-sm leading-relaxed mb-4">
               {t('footer.description')}

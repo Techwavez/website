@@ -44,9 +44,13 @@ const NotFound: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-4">
               <Link
                 to="/"
-                className="flex items-center space-x-3 p-4 bg-navy-700/50 rounded-lg hover:bg-neon-blue-500/10 hover:border-neon-blue-500/50 border border-transparent transition-all duration-300"
+                className="flex items-center space-x-4 p-4 bg-navy-700/50 rounded-lg hover:bg-neon-blue-500/10 hover:border-neon-blue-500/50 border border-transparent transition-all duration-300"
               >
-                <Home className="w-5 h-5 text-neon-blue-500" />
+                <img 
+                  src="/Techwave Office Logo Symbol 800x600.jpg" 
+                  alt="TechWave Office Logo" 
+                  className="w-8 h-8 object-contain"
+                />
                 <div className="text-left">
                   <div className="text-white font-inter font-medium">Homepage</div>
                   <div className="text-gray-400 font-inter text-sm">Explore our services</div>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { 
   Mail, 
   Phone, 
-  MapPin, 
   Send, 
   CheckCircle,
   Clock,
@@ -80,13 +79,6 @@ const Contact: React.FC = () => {
       details: '+1 (555) 123-4567',
       description: t('contact.info.phone.description'),
       link: 'tel:+1-555-123-4567'
-    },
-    {
-      icon: MapPin,
-      title: t('contact.info.visit.title'),
-      details: '4 rue sergent bobillot, Créteil, Val-de-marne 94000',
-      description: t('contact.info.visit.description'),
-      link: 'https://maps.google.com'
     }
   ];
 
@@ -153,7 +145,12 @@ const Contact: React.FC = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-slide-in-up">
-            <h1 className="text-5xl md:text-6xl font-space-grotesk font-bold text-white mb-6 leading-tight">
+            <img 
+              src="/Techwave Office Logo Symbol.png" 
+              alt="TechWave Office Logo" 
+              className="w-60 h-60 object-contain mx-auto mb-6"
+            />
+            <h1 className="text-4xl md:text-6xl font-space-grotesk font-bold text-white mb-6 leading-tight">
               {t('contact.hero.title')}
               <span className="block bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 bg-clip-text text-transparent">
                 {t('contact.hero.titleHighlight')}
@@ -169,7 +166,7 @@ const Contact: React.FC = () => {
       {/* Contact Information Section */}
       <section className="py-24 bg-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
             {contactInfo.map((info, index) => (
               <div
                 key={index}

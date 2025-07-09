@@ -45,14 +45,16 @@ const Header: React.FC = () => {
       isScrolled ? 'bg-navy-900/95 backdrop-blur-md shadow-2xl' : 'bg-transparent'
     }`}>
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative">
-              <Zap className="w-8 h-8 text-neon-blue-500 group-hover:text-gradient-lime-500 transition-colors duration-300" />
-              <div className="absolute inset-0 w-8 h-8 bg-neon-blue-500/20 rounded-full blur-md group-hover:bg-gradient-lime-500/20 transition-colors duration-300"></div>
+        <div className="flex justify-between items-center h-16">
+          <Link to="/" className="flex items-center space-x-4 group">
+            <div className="relative flex-shrink-0">
+              <img 
+                src="/Techwave Office Logo Symbol 800x600.jpg" 
+                alt="TechWave Office Logo" 
+                className="w-48 h-48 object-contain group-hover:scale-110 transition-transform duration-300"
+              />
             </div>
-            <span className="text-xl font-space-grotesk font-bold text-white group-hover:text-neon-blue-400 transition-colors duration-300">
+            <span className="text-3xl font-space-grotesk font-bold text-white group-hover:text-neon-blue-400 transition-colors duration-300">
               TechWave Office
             </span>
           </Link>

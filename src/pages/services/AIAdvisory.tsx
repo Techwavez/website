@@ -549,7 +549,11 @@ const AIAdvisory: React.FC = () => {
       <section className="py-24 bg-gradient-to-r from-neon-blue-500/10 to-gradient-lime-500/10">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="animate-slide-in-up">
-            <Brain className="w-16 h-16 text-neon-blue-500 mx-auto mb-6" />
+            <img 
+              src="/Techwave Office Logo Symbol 800x600.jpg" 
+              alt="TechWave Office Logo" 
+              className="w-20 h-20 object-contain mx-auto mb-6"
+            />
             <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
               {t('ai.cta.title')}
             </h2>
