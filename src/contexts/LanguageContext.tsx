@@ -23,6 +23,7 @@ const translations = {
     'services.aiAdvisory': 'AI Advisory',
     'services.erpImplementation': 'ERP Implementation',
     'services.businessAutomation': 'Business Automation',
+    'services.financialServices': 'Financial Services',
     
     // Hero Section
     'hero.title': 'Future-Forward',
@@ -457,6 +458,110 @@ const translations = {
     'ai.cta.subtitle': 'Transform your business with multi-model AI strategies, private chatbots, and intelligent agents designed for your specific needs and security requirements.',
     'ai.cta.startImplementation': 'Start AI Implementation',
 
+    // Financial Services
+    'financial.hero.title': 'Empowering Entrepreneurs with',
+    'financial.hero.titleHighlight': 'Financial Support',
+    'financial.hero.subtitle': 'Unlock public funding opportunities through subsidies and governmental loans with our comprehensive financial support services.',
+    'financial.hero.cta': 'Start Your Journey',
+    'financial.hero.freeTest': 'Free Eligibility Test',
+    'financial.hero.fundingSecured': 'Funding Secured',
+    'financial.hero.successRate': 'Success Rate',
+    'financial.hero.clientsHelped': 'Clients Helped',
+    'financial.hero.avgDays': 'Average Days',
+
+    'financial.offerings.title': 'Our Service',
+    'financial.offerings.titleHighlight': 'Offerings',
+    'financial.offerings.subtitle': 'Comprehensive assistance to ensure entrepreneurs can navigate the complex landscape of public funding with ease.',
+
+    'financial.services.eligibilityTests.title': 'Free Eligibility Tests',
+    'financial.services.eligibilityTests.description': 'Complimentary assessments to determine your eligibility for various subsidies and governmental loan programs.',
+    'financial.services.eligibilityTests.feature1': 'Comprehensive eligibility assessment',
+    'financial.services.eligibilityTests.feature2': 'Identification of suitable opportunities',
+    'financial.services.eligibilityTests.feature3': 'Risk assessment and analysis',
+    'financial.services.eligibilityTests.feature4': 'Personalized recommendations',
+
+    'financial.services.strategicRoadmap.title': 'Strategic Roadmap for Government Funds',
+    'financial.services.strategicRoadmap.description': 'Customized, step-by-step plan to guide you through the application process for government funding.',
+    'financial.services.strategicRoadmap.feature1': 'Detailed funding strategy',
+    'financial.services.strategicRoadmap.feature2': 'Timeline and milestone planning',
+    'financial.services.strategicRoadmap.feature3': 'Risk mitigation strategies',
+    'financial.services.strategicRoadmap.feature4': 'Success probability optimization',
+
+    'financial.services.endToEndManagement.title': 'End-to-End Process Management',
+    'financial.services.endToEndManagement.description': 'Complete management of the funding process from application to approval, ensuring compliance with all requirements.',
+    'financial.services.endToEndManagement.feature1': 'Application preparation and submission',
+    'financial.services.endToEndManagement.feature2': 'Follow-up and communication management',
+    'financial.services.endToEndManagement.feature3': 'Compliance monitoring',
+    'financial.services.endToEndManagement.feature4': 'Approval process coordination',
+
+    'financial.process.title': 'Our Proven',
+    'financial.process.titleHighlight': 'Process',
+    'financial.process.subtitle': 'A systematic approach to securing public funding that maximizes your chances of success.',
+    'financial.process.step1.title': 'Initial Assessment',
+    'financial.process.step1.description': 'Comprehensive evaluation of your business and funding needs',
+    'financial.process.step1.duration': '1-2 Days',
+    'financial.process.step2.title': 'Strategy Development',
+    'financial.process.step2.description': 'Creation of customized funding strategy and roadmap',
+    'financial.process.step2.duration': '3-5 Days',
+    'financial.process.step3.title': 'Application Preparation',
+    'financial.process.step3.description': 'Professional preparation and submission of applications',
+    'financial.process.step3.duration': '1-2 Weeks',
+    'financial.process.step4.title': 'Follow-up & Approval',
+    'financial.process.step4.description': 'Continuous monitoring and approval process management',
+    'financial.process.step4.duration': '2-8 Weeks',
+
+    'financial.fundingTypes.title': 'Types of',
+    'financial.fundingTypes.titleHighlight': 'Funding Available',
+    'financial.fundingTypes.subtitle': 'Various funding options tailored to different business needs and development stages.',
+
+    'financial.fundingTypes.subsidies.title': 'Business Subsidies',
+    'financial.fundingTypes.subsidies.description': 'Direct financial support for specific business activities and development initiatives.',
+    'financial.fundingTypes.subsidies.benefit1': 'No repayment required',
+    'financial.fundingTypes.subsidies.benefit2': 'Support for innovation projects',
+    'financial.fundingTypes.subsidies.benefit3': 'Regional development incentives',
+
+    'financial.fundingTypes.governmentLoans.title': 'Government Loans',
+    'financial.fundingTypes.governmentLoans.description': 'Low-interest loans backed by government guarantees for business expansion.',
+    'financial.fundingTypes.governmentLoans.benefit1': 'Competitive interest rates',
+    'financial.fundingTypes.governmentLoans.benefit2': 'Flexible repayment terms',
+    'financial.fundingTypes.governmentLoans.benefit3': 'Lower collateral requirements',
+
+    'financial.fundingTypes.grants.title': 'Research & Development Grants',
+    'financial.fundingTypes.grants.description': 'Funding for research, development, and innovation projects with high potential impact.',
+    'financial.fundingTypes.grants.benefit1': 'Support for R&D activities',
+    'financial.fundingTypes.grants.benefit2': 'Technology transfer opportunities',
+    'financial.fundingTypes.grants.benefit3': 'Collaboration incentives',
+
+    'financial.whyChoose.title': 'Why Choose',
+    'financial.whyChoose.titleHighlight': 'TechWave Office?',
+    'financial.whyChoose.subtitle': 'Our financial service is built on deep understanding of the challenges entrepreneurs face when seeking public funding.',
+
+    'financial.whyChoose.expertise.title': 'Deep Expertise',
+    'financial.whyChoose.expertise.description': 'Extensive knowledge of funding programs and application processes',
+    'financial.whyChoose.compliance.title': 'Compliance Assurance',
+    'financial.whyChoose.compliance.description': 'Ensuring all requirements and regulations are met perfectly',
+    'financial.whyChoose.support.title': 'Dedicated Support',
+    'financial.whyChoose.support.description': 'Personal guidance throughout the entire funding journey',
+    'financial.whyChoose.success.title': 'Proven Success',
+    'financial.whyChoose.success.description': 'Track record of successful funding applications and satisfied clients',
+
+    'financial.results.title': 'Proven',
+    'financial.results.titleHighlight': 'Results',
+    'financial.results.subtitle': 'Our expertise translates into tangible results for entrepreneurs seeking public funding.',
+    'financial.results.successRate': 'Success Rate',
+    'financial.results.successDescription': 'Applications successfully approved',
+    'financial.results.totalFunding': 'Total Funding',
+    'financial.results.fundingDescription': 'Secured for our clients',
+    'financial.results.clientsHelped': 'Clients Helped',
+    'financial.results.clientsDescription': 'Entrepreneurs supported',
+    'financial.results.avgDays': 'Average Days',
+    'financial.results.daysDescription': 'From application to approval',
+
+    'financial.cta.title': 'Ready to Unlock Funding Opportunities?',
+    'financial.cta.subtitle': 'Contact TechWave Office today to schedule your free eligibility test and take the first step toward securing subsidies or governmental loans.',
+    'financial.cta.freeTest': 'Start Free Test',
+    'financial.cta.consultation': 'Book Consultation',
+
     // Business Automation Page
     'automation.hero.title': 'Intelligent Business',
     'automation.hero.titleHighlight': 'Automation Solutions',
@@ -620,6 +725,7 @@ const translations = {
     'services.aiAdvisory': 'Conseil en IA',
     'services.erpImplementation': 'Implémentation ERP',
     'services.businessAutomation': 'Automatisation Métier',
+    'services.financialServices': 'Services Financiers',
     
     // Hero Section
     'hero.title': 'La Technologie',
@@ -1054,6 +1160,110 @@ const translations = {
     'ai.cta.subtitle': 'Transformez votre business avec des stratégies IA multi-modèles, des chatbots privés et des agents intelligents conçus pour vos besoins spécifiques et exigences de sécurité.',
     'ai.cta.startImplementation': 'Démarrer l\'Implémentation IA',
 
+    // Financial Services
+    'financial.hero.title': 'Autonomiser les Entrepreneurs avec',
+    'financial.hero.titleHighlight': 'Support Financier',
+    'financial.hero.subtitle': 'Débloquez les opportunités de financement public grâce aux subventions et prêts gouvernementaux avec nos services de support financier complets.',
+    'financial.hero.cta': 'Commencez Votre Parcours',
+    'financial.hero.freeTest': 'Test d\'Éligibilité Gratuit',
+    'financial.hero.fundingSecured': 'Financement Sécurisé',
+    'financial.hero.successRate': 'Taux de Succès',
+    'financial.hero.clientsHelped': 'Clients Aidés',
+    'financial.hero.avgDays': 'Jours Moyens',
+
+    'financial.offerings.title': 'Nos Offres de',
+    'financial.offerings.titleHighlight': 'Services',
+    'financial.offerings.subtitle': 'Assistance complète pour s\'assurer que les entrepreneurs peuvent naviguer dans le paysage complexe du financement public avec facilité.',
+
+    'financial.services.eligibilityTests.title': 'Tests d\'Éligibilité Gratuits',
+    'financial.services.eligibilityTests.description': 'Évaluations gratuites pour déterminer votre éligibilité aux divers programmes de subventions et prêts gouvernementaux.',
+    'financial.services.eligibilityTests.feature1': 'Évaluation d\'éligibilité complète',
+    'financial.services.eligibilityTests.feature2': 'Identification d\'opportunités appropriées',
+    'financial.services.eligibilityTests.feature3': 'Évaluation et analyse des risques',
+    'financial.services.eligibilityTests.feature4': 'Recommandations personnalisées',
+
+    'financial.services.strategicRoadmap.title': 'Feuille de Route Stratégique pour Fonds Gouvernementaux',
+    'financial.services.strategicRoadmap.description': 'Plan personnalisé étape par étape pour vous guider dans le processus de demande de financement gouvernemental.',
+    'financial.services.strategicRoadmap.feature1': 'Stratégie de financement détaillée',
+    'financial.services.strategicRoadmap.feature2': 'Planification de calendrier et jalons',
+    'financial.services.strategicRoadmap.feature3': 'Stratégies d\'atténuation des risques',
+    'financial.services.strategicRoadmap.feature4': 'Optimisation de probabilité de succès',
+
+    'financial.services.endToEndManagement.title': 'Gestion de Processus de Bout en Bout',
+    'financial.services.endToEndManagement.description': 'Gestion complète du processus de financement de la demande à l\'approbation, assurant la conformité avec toutes les exigences.',
+    'financial.services.endToEndManagement.feature1': 'Préparation et soumission de demandes',
+    'financial.services.endToEndManagement.feature2': 'Gestion de suivi et communication',
+    'financial.services.endToEndManagement.feature3': 'Surveillance de conformité',
+    'financial.services.endToEndManagement.feature4': 'Coordination du processus d\'approbation',
+
+    'financial.process.title': 'Notre Processus',
+    'financial.process.titleHighlight': 'Éprouvé',
+    'financial.process.subtitle': 'Une approche systématique pour sécuriser le financement public qui maximise vos chances de succès.',
+    'financial.process.step1.title': 'Évaluation Initiale',
+    'financial.process.step1.description': 'Évaluation complète de votre entreprise et besoins de financement',
+    'financial.process.step1.duration': '1-2 Jours',
+    'financial.process.step2.title': 'Développement de Stratégie',
+    'financial.process.step2.description': 'Création de stratégie de financement personnalisée et feuille de route',
+    'financial.process.step2.duration': '3-5 Jours',
+    'financial.process.step3.title': 'Préparation de Demande',
+    'financial.process.step3.description': 'Préparation professionnelle et soumission de demandes',
+    'financial.process.step3.duration': '1-2 Semaines',
+    'financial.process.step4.title': 'Suivi et Approbation',
+    'financial.process.step4.description': 'Surveillance continue et gestion du processus d\'approbation',
+    'financial.process.step4.duration': '2-8 Semaines',
+
+    'financial.fundingTypes.title': 'Types de',
+    'financial.fundingTypes.titleHighlight': 'Financement Disponibles',
+    'financial.fundingTypes.subtitle': 'Diverses options de financement adaptées aux différents besoins d\'entreprise et étapes de développement.',
+
+    'financial.fundingTypes.subsidies.title': 'Subventions d\'Entreprise',
+    'financial.fundingTypes.subsidies.description': 'Support financier direct pour des activités commerciales spécifiques et initiatives de développement.',
+    'financial.fundingTypes.subsidies.benefit1': 'Aucun remboursement requis',
+    'financial.fundingTypes.subsidies.benefit2': 'Support pour projets d\'innovation',
+    'financial.fundingTypes.subsidies.benefit3': 'Incitations au développement régional',
+
+    'financial.fundingTypes.governmentLoans.title': 'Prêts Gouvernementaux',
+    'financial.fundingTypes.governmentLoans.description': 'Prêts à taux d\'intérêt avantageux soutenus par des garanties gouvernementales pour l\'expansion d\'entreprise.',
+    'financial.fundingTypes.governmentLoans.benefit1': 'Taux d\'intérêt compétitifs',
+    'financial.fundingTypes.governmentLoans.benefit2': 'Conditions de remboursement flexibles',
+    'financial.fundingTypes.governmentLoans.benefit3': 'Exigences de garantie réduites',
+
+    'financial.fundingTypes.grants.title': 'Subventions Recherche et Développement',
+    'financial.fundingTypes.grants.description': 'Financement pour projets de recherche, développement et innovation à fort potentiel d\'impact.',
+    'financial.fundingTypes.grants.benefit1': 'Support pour activités R&D',
+    'financial.fundingTypes.grants.benefit2': 'Opportunités de transfert technologique',
+    'financial.fundingTypes.grants.benefit3': 'Incitations à la collaboration',
+
+    'financial.whyChoose.title': 'Pourquoi Choisir',
+    'financial.whyChoose.titleHighlight': 'TechWave Office ?',
+    'financial.whyChoose.subtitle': 'Notre service financier est basé sur une compréhension approfondie des défis auxquels font face les entrepreneurs lors de la recherche de financement public.',
+
+    'financial.whyChoose.expertise.title': 'Expertise Approfondie',
+    'financial.whyChoose.expertise.description': 'Connaissance étendue des programmes de financement et processus de demande',
+    'financial.whyChoose.compliance.title': 'Assurance de Conformité',
+    'financial.whyChoose.compliance.description': 'S\'assurer que toutes les exigences et réglementations sont parfaitement respectées',
+    'financial.whyChoose.support.title': 'Support Dédié',
+    'financial.whyChoose.support.description': 'Guidance personnelle tout au long du parcours de financement',
+    'financial.whyChoose.success.title': 'Succès Prouvé',
+    'financial.whyChoose.success.description': 'Historique de demandes de financement réussies et clients satisfaits',
+
+    'financial.results.title': 'Résultats',
+    'financial.results.titleHighlight': 'Prouvés',
+    'financial.results.subtitle': 'Notre expertise se traduit par des résultats tangibles pour les entrepreneurs recherchant un financement public.',
+    'financial.results.successRate': 'Taux de Succès',
+    'financial.results.successDescription': 'Demandes approuvées avec succès',
+    'financial.results.totalFunding': 'Financement Total',
+    'financial.results.fundingDescription': 'Sécurisé pour nos clients',
+    'financial.results.clientsHelped': 'Clients Aidés',
+    'financial.results.clientsDescription': 'Entrepreneurs supportés',
+    'financial.results.avgDays': 'Jours Moyens',
+    'financial.results.daysDescription': 'De la demande à l\'approbation',
+
+    'financial.cta.title': 'Prêt à Débloquer les Opportunités de Financement ?',
+    'financial.cta.subtitle': 'Contactez TechWave Office aujourd\'hui pour planifier votre test d\'éligibilité gratuit et faire le premier pas vers l\'obtention de subventions ou prêts gouvernementaux.',
+    'financial.cta.freeTest': 'Commencer Test Gratuit',
+    'financial.cta.consultation': 'Réserver Consultation',
+
     // Business Automation Page
     'automation.hero.title': 'Solutions d\'Automatisation',
     'automation.hero.titleHighlight': 'Business Intelligentes',
@@ -1211,15 +1421,50 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
+// Function to detect browser language
+const detectBrowserLanguage = (): Language => {
+  // Check localStorage first for user preference
+  const savedLanguage = localStorage.getItem('preferred-language');
+  if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+    return savedLanguage as Language;
+  }
+
+  // Get browser language preferences
+  const browserLanguages = navigator.languages || [navigator.language];
+  
+  // Check each browser language preference
+  for (const lang of browserLanguages) {
+    const languageCode = lang.split('-')[0].toLowerCase();
+    
+    // Return French if browser prefers French
+    if (languageCode === 'fr') {
+      return 'fr';
+    }
+    // Return English if browser prefers English
+    if (languageCode === 'en') {
+      return 'en';
+    }
+  }
+  
+  // Default fallback to English
+  return 'en';
+};
+
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(() => detectBrowserLanguage());
+
+  // Enhanced setLanguage function that saves to localStorage
+  const updateLanguage = (newLang: Language) => {
+    setLanguage(newLang);
+    localStorage.setItem('preferred-language', newLang);
+  };
 
   const t = (key: string): string => {
     return translations[language][key as keyof typeof translations['en']] || key;
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: updateLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   );

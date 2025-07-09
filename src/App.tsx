@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import AIAdvisory from './pages/services/AIAdvisory';
 import ERPImplementation from './pages/services/ERPImplementation';
 import BusinessIntelligence from './pages/services/BusinessIntelligence';
+import FinancialServices from './pages/services/FinancialServices';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import NotFound from './pages/NotFound';
@@ -20,6 +21,7 @@ function App() {
             <Route path="/services/ai-advisory" element={<AIAdvisory />} />
             <Route path="/services/erp-implementation" element={<ERPImplementation />} />
             <Route path="/services/business-intelligence" element={<BusinessIntelligence />} />
+            <Route path="/services/financial-services" element={<FinancialServices />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
