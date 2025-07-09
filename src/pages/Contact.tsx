@@ -8,14 +8,28 @@ import {
   MessageSquare,
   User,
   Building,
-  ArrowLeft
+  ArrowLeft,
+  AlertCircle,
+  Wifi,
+  RefreshCw
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { 
+  validateForm, 
+  validateField, 
+  isFormValid, 
+  sanitizeFormData,
+  rateLimiter,
+  validationRules,
+  type FormData,
+  type ValidationErrors 
+} from '../utils/formValidation';
+import { sendContactForm, isEmailServiceConfigured } from '../services/emailService';
 
 const Contact: React.FC = () => {
   const { t } = useLanguage();
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     company: '',
@@ -24,8 +38,11 @@ const Contact: React.FC = () => {
     message: '',
   });
   
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitSuccess, setSubmitSuccess] = useState<string | null>(null);
 
   const services = [
     t('services.aiAdvisory'),
@@ -36,21 +53,103 @@ const Contact: React.FC = () => {
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    
+    // Update form data
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
+    
+    // Clear submit messages when user starts typing
+    if (submitError) setSubmitError(null);
+    if (submitSuccess) setSubmitSuccess(null);
+    
+    // Real-time validation for field
+    if (validationErrors[name]) {
+      const fieldError = validateField(name, value, validationRules[name], t);
+      setValidationErrors({
+        ...validationErrors,
+        [name]: fieldError || '',
+      });
+      
+      // Remove error if field is now valid
+      if (!fieldError) {
+        const { [name]: removed, ...rest } = validationErrors;
+        setValidationErrors(rest);
+      }
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Clear previous messages
+    setSubmitError(null);
+    setSubmitSuccess(null);
+    
+    // Validate entire form
+    const errors = validateForm(formData, t);
+    setValidationErrors(errors);
+    
+    if (!isFormValid(errors)) {
+      setSubmitError(t('contact.form.status.validationFailed'));
+      return;
+    }
+    
+    // Check rate limiting
+    if (!rateLimiter.canSubmit()) {
+      const remainingMs = rateLimiter.getRemainingCooldown();
+      const remainingSec = Math.ceil(remainingMs / 1000);
+      setSubmitError(`${t('contact.form.status.rateLimited')} ${remainingSec}s`);
+      return;
+    }
+    
+    // Check if email service is configured
+    if (!isEmailServiceConfigured()) {
+      setSubmitError(t('contact.form.status.emailNotConfigured'));
+      return;
+    }
+    
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      // Sanitize form data
+      const sanitizedData = sanitizeFormData(formData);
+      
+      // Send email via EmailJS
+      const result = await sendContactForm(sanitizedData);
+      
+      if (result.success) {
+        // Record successful submission for rate limiting
+        rateLimiter.recordSubmission();
+        
+        // Show success and redirect to success page
+        setSubmitSuccess(result.message);
+        setIsSubmitted(true);
+      } else {
+        // Handle specific error types
+        switch (result.error) {
+          case 'EMAILJS_NOT_CONFIGURED':
+            setSubmitError(t('contact.form.status.emailNotConfigured'));
+            break;
+          case 'NETWORK_ERROR':
+            setSubmitError(t('contact.form.status.networkError'));
+            break;
+          case 'RATE_LIMITED':
+            setSubmitError(t('contact.form.status.rateLimited'));
+            break;
+          default:
+            setSubmitError(t('contact.form.status.emailFailed'));
+            break;
+        }
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitError(t('contact.form.status.emailFailed'));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
@@ -62,6 +161,9 @@ const Contact: React.FC = () => {
       service: '',
       message: '',
     });
+    setValidationErrors({});
+    setSubmitError(null);
+    setSubmitSuccess(null);
     setIsSubmitted(false);
   };
 
@@ -148,7 +250,8 @@ const Contact: React.FC = () => {
             <img 
               src="/Techwave Office Logo Symbol.png" 
               alt="TechWave Office Logo" 
-              className="w-60 h-60 object-contain mx-auto mb-6"
+              className="object-contain mx-auto mb-6"
+              style={{ width: '140px', height: '140px' }}
             />
             <h1 className="text-4xl md:text-6xl font-space-grotesk font-bold text-white mb-6 leading-tight">
               {t('contact.hero.title')}
@@ -218,6 +321,43 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="bg-navy-800/50 backdrop-blur-sm border border-navy-700 rounded-2xl p-8 animate-slide-in-up">
+            {/* Error/Success Messages */}
+            {submitError && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center space-x-3">
+                <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                <div>
+                  <p className="text-red-400 font-inter font-medium">{submitError}</p>
+                  {submitError.includes(t('contact.form.status.emailNotConfigured')) && (
+                    <div className="mt-2">
+                      <a
+                        href={`mailto:${t('contact.info.email.details') || 'contact@techwaveoffice.com'}`}
+                        className="inline-flex items-center space-x-2 text-red-300 hover:text-red-200 transition-colors duration-300"
+                      >
+                        <Mail className="w-4 h-4" />
+                        <span className="text-sm">{t('contact.form.action.contactDirect')}</span>
+                      </a>
+                    </div>
+                  )}
+                  {submitError.includes(t('contact.form.status.networkError')) && (
+                    <button
+                      onClick={handleSubmit}
+                      className="mt-2 inline-flex items-center space-x-2 text-red-300 hover:text-red-200 transition-colors duration-300"
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                      <span className="text-sm">{t('contact.form.action.retry')}</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {submitSuccess && (
+              <div className="mb-6 p-4 bg-gradient-lime-500/10 border border-gradient-lime-500/20 rounded-lg flex items-center space-x-3">
+                <CheckCircle className="w-5 h-5 text-gradient-lime-400 flex-shrink-0" />
+                <p className="text-gradient-lime-400 font-inter font-medium">{submitSuccess}</p>
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -233,10 +373,17 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 bg-navy-700/50 border border-navy-600 rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:border-neon-blue-500 focus:ring-2 focus:ring-neon-blue-500/20 transition-all duration-300"
+                      className={`w-full pl-12 pr-4 py-3 bg-navy-700/50 border rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                        validationErrors.name 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
+                          : 'border-navy-600 focus:border-neon-blue-500 focus:ring-neon-blue-500/20'
+                      }`}
                       placeholder={t('contact.form.fullNamePlaceholder')}
                     />
                   </div>
+                  {validationErrors.name && (
+                    <p className="mt-1 text-sm text-red-400 font-inter">{validationErrors.name}</p>
+                  )}
                 </div>
 
                 <div>
@@ -252,10 +399,17 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full pl-12 pr-4 py-3 bg-navy-700/50 border border-navy-600 rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:border-neon-blue-500 focus:ring-2 focus:ring-neon-blue-500/20 transition-all duration-300"
+                      className={`w-full pl-12 pr-4 py-3 bg-navy-700/50 border rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                        validationErrors.email 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
+                          : 'border-navy-600 focus:border-neon-blue-500 focus:ring-neon-blue-500/20'
+                      }`}
                       placeholder={t('contact.form.emailPlaceholder')}
                     />
                   </div>
+                  {validationErrors.email && (
+                    <p className="mt-1 text-sm text-red-400 font-inter">{validationErrors.email}</p>
+                  )}
                 </div>
 
                 <div>
@@ -288,10 +442,17 @@ const Contact: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full pl-12 pr-4 py-3 bg-navy-700/50 border border-navy-600 rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:border-neon-blue-500 focus:ring-2 focus:ring-neon-blue-500/20 transition-all duration-300"
+                      className={`w-full pl-12 pr-4 py-3 bg-navy-700/50 border rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                        validationErrors.phone 
+                          ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
+                          : 'border-navy-600 focus:border-neon-blue-500 focus:ring-neon-blue-500/20'
+                      }`}
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
+                  {validationErrors.phone && (
+                    <p className="mt-1 text-sm text-red-400 font-inter">{validationErrors.phone}</p>
+                  )}
                 </div>
               </div>
 
@@ -305,7 +466,11 @@ const Contact: React.FC = () => {
                   value={formData.service}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-navy-700/50 border border-navy-600 rounded-lg text-white font-inter focus:outline-none focus:border-neon-blue-500 focus:ring-2 focus:ring-neon-blue-500/20 transition-all duration-300"
+                  className={`w-full px-4 py-3 bg-navy-700/50 border rounded-lg text-white font-inter focus:outline-none focus:ring-2 transition-all duration-300 ${
+                    validationErrors.service 
+                      ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
+                      : 'border-navy-600 focus:border-neon-blue-500 focus:ring-neon-blue-500/20'
+                  }`}
                 >
                   <option value="">{t('contact.form.selectService')}</option>
                   {services.map((service) => (
@@ -314,6 +479,9 @@ const Contact: React.FC = () => {
                     </option>
                   ))}
                 </select>
+                {validationErrors.service && (
+                  <p className="mt-1 text-sm text-red-400 font-inter">{validationErrors.service}</p>
+                )}
               </div>
 
               <div>
@@ -329,10 +497,17 @@ const Contact: React.FC = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full pl-12 pr-4 py-3 bg-navy-700/50 border border-navy-600 rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:border-neon-blue-500 focus:ring-2 focus:ring-neon-blue-500/20 transition-all duration-300 resize-none"
+                    className={`w-full pl-12 pr-4 py-3 bg-navy-700/50 border rounded-lg text-white font-inter placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 resize-none ${
+                      validationErrors.message 
+                        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' 
+                        : 'border-navy-600 focus:border-neon-blue-500 focus:ring-neon-blue-500/20'
+                    }`}
                     placeholder={t('contact.form.projectPlaceholder')}
                   />
                 </div>
+                {validationErrors.message && (
+                  <p className="mt-1 text-sm text-red-400 font-inter">{validationErrors.message}</p>
+                )}
               </div>
 
               <div className="text-center">
