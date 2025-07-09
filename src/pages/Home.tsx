@@ -84,6 +84,11 @@ const Home: React.FC = () => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="animate-slide-in-up">
+            <img 
+              src="/Techwave Office Main Logo.png" 
+              alt="TechWave Office Logo" 
+              className="w-96 h-32 object-contain mx-auto mb-8"
+            />
             <h1 className="text-5xl md:text-7xl font-space-grotesk font-bold text-white mb-6 leading-tight">
               {t('hero.title')}
               <span className="block bg-gradient-to-r from-neon-blue-500 to-gradient-lime-500 bg-clip-text text-transparent">
@@ -103,7 +108,7 @@ const Home: React.FC = () => {
               </Link>
               <Link
                 to="/about"
-                className="group border-2 border-neon-blue-500 text-neon-blue-500 px-8 py-4 rounded-lg font-inter font-semibold text-lg hover:bg-neon-blue-500/10 transition-all duration-300 flex items-center space-x-2"
+                className="group border-2 border-neon-blue-500 text-neon-blue-500 px-8 py-4 rounded-lg font-inter font-semibold text-lg hover:bg-neon-blue-500/10 transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <span>{t('hero.learnMore')}</span>
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
