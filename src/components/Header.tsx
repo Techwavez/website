@@ -49,9 +49,9 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-4 group">
             <div className="relative flex-shrink-0">
               <img 
-                src="/Techwave Office Logo Symbol 800x600.jpg" 
+                src="/Techwave Office Logo Symbol.png" 
                 alt="TechWave Office Logo" 
-                className="w-48 h-48 object-contain group-hover:scale-110 transition-transform duration-300"
+                className="w-12 h-12 object-contain group-hover:scale-110 transition-transform duration-300"
               />
             </div>
             <span className="text-3xl font-space-grotesk font-bold text-white group-hover:text-neon-blue-400 transition-colors duration-300">

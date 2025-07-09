@@ -44,31 +44,31 @@ const About: React.FC = () => {
 
   const team = [
     {
-      name: 'Sarah Chen',
+      name: 'Severine Dick',
       role: t('about.team.ceo.role'),
       expertise: t('about.team.ceo.expertise'),
-      experience: '15+ years',
+      experience: '16+ years',
       description: t('about.team.ceo.description'),
     },
     {
-      name: 'Michael Rodriguez',
+      name: 'Pincemail Sebastien',
       role: t('about.team.cto.role'),
       expertise: t('about.team.cto.expertise'),
-      experience: '12+ years',
+      experience: '14+ years',
       description: t('about.team.cto.description'),
     },
     {
-      name: 'Emma Thompson',
+      name: 'Wefactorit',
       role: t('about.team.head.role'),
       expertise: t('about.team.head.expertise'),
-      experience: '10+ years',
+      experience: '7+ years',
       description: t('about.team.head.description'),
     },
     {
-      name: 'David Park',
+      name: 'Webiconographie',
       role: t('about.team.principal.role'),
       expertise: t('about.team.principal.expertise'),
-      experience: '8+ years',
+      experience: '13+ years',
       description: t('about.team.principal.description'),
     }
   ];
@@ -370,9 +370,10 @@ const About: React.FC = () => {
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <div className="animate-slide-in-up">
             <img 
-              src="/Techwave Office Logo Symbol 800x600.jpg" 
+              src="/Techwave Office Logo Symbol.png" 
               alt="TechWave Office Logo" 
-              className="w-20 h-20 object-contain mx-auto mb-6"
+              className="object-contain mx-auto mb-6"
+              style={{ width: '140px', height: '140px' }}
             />
             <h2 className="text-4xl md:text-5xl font-space-grotesk font-bold text-white mb-6">
               {t('about.cta.title')}

@@ -148,7 +148,8 @@ const Contact: React.FC = () => {
             <img 
               src="/Techwave Office Logo Symbol.png" 
               alt="TechWave Office Logo" 
-              className="w-60 h-60 object-contain mx-auto mb-6"
+              className="object-contain mx-auto mb-6"
+              style={{ width: '140px', height: '140px' }}
             />
             <h1 className="text-4xl md:text-6xl font-space-grotesk font-bold text-white mb-6 leading-tight">
               {t('contact.hero.title')}
