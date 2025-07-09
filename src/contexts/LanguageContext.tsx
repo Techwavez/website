@@ -17,7 +17,7 @@ const translations = {
     'nav.services': 'Services',
     'nav.about': 'About',
     'nav.contact': 'Contact',
-    'nav.getStarted': 'Get Started',
+    'nav.getStarted': 'Schedule Meeting',
     
     // Services
     'services.aiAdvisory': 'AI Advisory',
@@ -30,7 +30,7 @@ const translations = {
     'hero.titleHighlight': 'Tech Solutions',
     'hero.subtitle': 'Pioneering AI advisory, ERP implementation, and business automation solutions that propel enterprises into the digital future.',
     'hero.startTransformation': 'Start Your Transformation',
-    'hero.learnMore': 'Learn More',
+    'hero.learnMore': 'Call Expert',
     
     // Services Section
     'services.title': 'Enterprise-Grade Solutions',
@@ -719,7 +719,7 @@ const translations = {
     'nav.services': 'Services',
     'nav.about': 'À Propos',
     'nav.contact': 'Contact',
-    'nav.getStarted': 'Commencer',
+    'nav.getStarted': 'Planifier Réunion',
     
     // Services
     'services.aiAdvisory': 'Conseil en IA',
@@ -732,7 +732,7 @@ const translations = {
     'hero.titleHighlight': 'au Service du Business',
     'hero.subtitle': 'Composez votre business autour des évolutions technologiques. Accélérez vos processus grâce aux avancées technologiques avec nos solutions d\'IA, d\'ERP et d\'automatisation.',
     'hero.startTransformation': 'Démarrez Votre Transformation',
-    'hero.learnMore': 'En Savoir Plus',
+    'hero.learnMore': 'Appeler Expert',
     
     // Services Section
     'services.title': 'Solutions Technologiques Avancées',
